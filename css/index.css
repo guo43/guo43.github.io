@@ -9,7 +9,7 @@ li {
 
 a {
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 div {
@@ -25,7 +25,7 @@ body {
 }
 
 .flex-outer {
-    width: 40%;
+    width: 50%;
     height: 926px;
     background-color: white;
     justify-content: center;
@@ -77,16 +77,56 @@ body {
         transform: translateX(0);
     }
 
-    5% {
-        transform: translateX(-99%);
+    9% {
+        transform: translateX(0);
+    }
+
+    10% {
+        transform: translateX(-20%);
+    }
+
+    19% {
+        transform: translateX(-20%);
+    }
+
+    20% {
+        transform: translateX(-40%);
+    }
+
+    29% {
+        transform: translateX(-60%)
+    }
+
+    30% {
+        transform: translateX(-60%)
+    }
+
+    39% {
+        transform: translateX(-80%);
+    }
+
+    40% {
+        transform: translateX(-80%);
+    }
+
+    49% {
+        transform: translateX(-80%);
     }
 
     50% {
         transform: translateX(-100%);
     }
 
-    55% {
-        transform: translateX(-1%);
+    60% {
+        transform: translateX(80%);
+    }
+
+    70% {
+        transform: translateX(60%);
+    }
+
+    80% {
+        transform: translateX(40%);
     }
 
     100% {
@@ -109,13 +149,13 @@ body {
 }
 
 #banner-outer .display-img {
-    width: 800px;
+    width: 500%;
     height: 100%;
 }
 
 #banner-outer .display-img .img {
     float: left;
-    width: 300px;
+    width: 20%;
     height: 100%;
     background-color: seashell;
     animation: banner-display 10s;
