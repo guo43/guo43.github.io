@@ -15,7 +15,7 @@
   
   <title>
     
-      archive_a: 2024/6 
+      ubuntu-setting 
       
       
       |
@@ -114,41 +114,131 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2024</span>
-          </h2>
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">ubuntu-setting</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2024-06-01 08:59:59
+        </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h1 id="ubuntu配置"><a href="#ubuntu配置" class="headerlink" title="ubuntu配置"></a>ubuntu配置</h1><h2 id="一、终端打不开"><a href="#一、终端打不开" class="headerlink" title="一、终端打不开"></a>一、终端打不开</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># ctrl + alt + f6 切换到终端访问界面</span><br><span class="line">su root</span><br><span class="line"># 下载xterm 辅助终端软件</span><br><span class="line">sudo apt-get install xterm</span><br><span class="line"># ctrl + alt + f1 打开xterm</span><br><span class="line">sudo apt-get remove gnome-terminal</span><br><span class="line">sudo apt-get install gnome-terminal</span><br><span class="line"></span><br><span class="line">sudo locale-gen --purge</span><br><span class="line">sudo dpkg-reconfigure locales</span><br><span class="line"></span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、安装sublime"><a href="#二、安装sublime" class="headerlink" title="二、安装sublime"></a>二、安装sublime</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$:wget -qO- https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -</span><br><span class="line">$:echo &quot;deb https://download.sublimetext.com/ apt/stable/&quot; | sudo tee /etc/apt/sources.list.d/sublime-text.list</span><br><span class="line">$:sudo apt-get update</span><br><span class="line">$:sudo apt-get install sublime-text</span><br></pre></td></tr></table></figure>
+
+<p>终端中使用<code>subl</code>打开</p>
+<h2 id="三、安装git"><a href="#三、安装git" class="headerlink" title="三、安装git"></a>三、安装git</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 检查是否安装git</span><br><span class="line">git</span><br><span class="line">sudo apt-get install git</span><br><span class="line">#创建版本库</span><br><span class="line">mkdir repository_name</span><br><span class="line">cd repository_name</span><br><span class="line">git init  #通过ls -ah查看目录下的内容</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://www.liaoxuefeng.com/files/attachments/919020037470528/0" alt="git-repo"></p>
+<h3 id="（一）创建远程库"><a href="#（一）创建远程库" class="headerlink" title="（一）创建远程库"></a>（一）创建远程库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#创建SSH Key</span><br><span class="line">ssh-keygen -t rsa -C &quot;Youremail@example.com&quot;</span><br><span class="line">#登录 github -&gt; Add SSH Key 将 .ssh 目录下的 id_rsa.pub 文件中的公钥添加</span><br><span class="line"># 添加 Git 仓库</span><br><span class="line"># 在本地运行一下命令</span><br><span class="line">git remote add origin git@github.com:guo43/learngit.git</span><br><span class="line"># 将当前分支推送到远程 -u(第一次使用) 会将本地 master 和远程 maste r关联</span><br><span class="line">git push -u origin master</span><br><span class="line">#将本地 master 分支推送到 github</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+<h3 id="（二）-克隆"><a href="#（二）-克隆" class="headerlink" title="（二） 克隆"></a>（二） 克隆</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:guo43/learngit.git</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、运行mykernel"><a href="#四、运行mykernel" class="headerlink" title="四、运行mykernel"></a>四、运行mykernel</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">make loader.o</span><br><span class="line">make kernel.o</span><br><span class="line">make mykernel.bin</span><br><span class="line">make install		#install mykernel to kernel</span><br><span class="line">sudo vim /boot/grub/grub.cfg</span><br><span class="line">	menuentry &#x27;My Operating System&#x27; &#123;</span><br><span class="line">		multiboot /boot/mykernel.bin</span><br><span class="line">		boot</span><br><span class="line">	&#125;</span><br><span class="line"># 需要安装apt-get install xorriso mtools</span><br></pre></td></tr></table></figure>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2024/06/01/hello-world/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2024-06-01 08:59:59
+            </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+          </div>
         </div>
       
-      <div class="post-item" title="ubuntu-setting">
-        <div class="time-m-d">06-01</div>
-        <div class="title">
-          <a href="/2024/06/01/ubuntu-setting/">
-            <span>ubuntu-setting</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="Hello World">
-        <div class="time-m-d">06-01</div>
-        <div class="title">
-          <a href="/2024/06/01/hello-world/">
-            <span>Hello World</span>
-          </a>
-        </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ubuntu%E9%85%8D%E7%BD%AE"><span class="toc-text">ubuntu配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BB%88%E7%AB%AF%E6%89%93%E4%B8%8D%E5%BC%80"><span class="toc-text">一、终端打不开</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85sublime"><span class="toc-text">二、安装sublime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%89%E8%A3%85git"><span class="toc-text">三、安装git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%88%9B%E5%BB%BA%E8%BF%9C%E7%A8%8B%E5%BA%93"><span class="toc-text">（一）创建远程库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%85%8B%E9%9A%86"><span class="toc-text">（二） 克隆</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BF%90%E8%A1%8Cmykernel"><span class="toc-text">四、运行mykernel</span></a></li></ol></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         
 <div class="footer">
@@ -405,6 +495,24 @@
 
 
         
+  
+    <div class="share-icon tools-bar-item">
+      <a href="javascript: void(0)" id="share-icon">
+        <i class="iconfont iconshare"></i>
+      </a>
+      <div class="share-content hidden">
+        
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + ubuntu-setting + '&url=' + http%3A%2F%2Fexample.com%2F2024%2F06%2F01%2Fubuntu-setting%2F + '" target="_blank" title="Twitter">
+            <i class="iconfont icon-twitter"></i>
+          </a>
+        
+        
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2024/06/01/ubuntu-setting/" target="_blank" title="Facebook">
+            <i class="iconfont icon-facebooksquare"></i>
+          </a>
+        
+      </div>
+    </div>
   
   
 <script src="/js/shares.js"></script>
