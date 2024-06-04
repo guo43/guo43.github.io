@@ -159,7 +159,7 @@
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-06-01 10:12:54
+          2024-06-04 21:24:38
         </span>
         
               <span class="post-tags">
@@ -187,7 +187,19 @@
 
 <h3 id="（二）-克隆"><a href="#（二）-克隆" class="headerlink" title="（二） 克隆"></a>（二） 克隆</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:guo43/learngit.git</span><br></pre></td></tr></table></figure>
 
-<h2 id="四、运行mykernel"><a href="#四、运行mykernel" class="headerlink" title="四、运行mykernel"></a>四、运行mykernel</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">make loader.o</span><br><span class="line">make kernel.o</span><br><span class="line">make mykernel.bin</span><br><span class="line">make install		#install mykernel to kernel</span><br><span class="line">sudo vim /boot/grub/grub.cfg</span><br><span class="line">	menuentry &#x27;My Operating System&#x27; &#123;</span><br><span class="line">		multiboot /boot/mykernel.bin</span><br><span class="line">		boot</span><br><span class="line">	&#125;</span><br><span class="line"># 需要安装apt-get install xorriso mtools</span><br></pre></td></tr></table></figure>
+<h2 id="四、运行myker7nel"><a href="#四、运行myker7nel" class="headerlink" title="四、运行myker7nel"></a>四、运行myker7nel</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">make loader.o</span><br><span class="line">make kernel.o</span><br><span class="line">make mykernel.bin</span><br><span class="line">make install		#install mykernel to kernel</span><br><span class="line">sudo vim /boot/grub/grub.cfg</span><br><span class="line">	menuentry &#x27;My Operating System&#x27; &#123;</span><br><span class="line">		multiboot /boot/mykernel.bin</span><br><span class="line">		boot</span><br><span class="line">	&#125;</span><br><span class="line"># 需要安装apt-get install xorriso mtools</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、ubuntu-用户权限"><a href="#五、ubuntu-用户权限" class="headerlink" title="五、ubuntu 用户权限"></a>五、ubuntu 用户权限</h2><ul>
+<li>root 能够执行所有的指令和命令</li>
+<li>user 执行部分的指令</li>
+</ul>
+<p>​	liunx系统中，分为root 超级用户，能够执行所有的指令。用户只能够执行一部分的指令，防止用户执行一些风险任务。因此，默认为用户级别。但如果用户想要执行特权指令，可以使用 <code>sudo</code> ，使用户可以特权执行管理者才能执行的命令。</p>
+<p>​	用户可以通过 <code>sudo</code> 命令提高权限，执行一些特殊指令。默认的用户没有特权，需要配置，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">su root</span><br><span class="line">vim /etc/sudoers</span><br><span class="line"># 添加</span><br><span class="line">user_name ALL = (ALL:ALL) ALLs</span><br></pre></td></tr></table></figure>
+
+<p>原文：<a target="_blank" rel="noopener" href="https://www.baeldung.com/linux/username-not-in-sudoers-file">https://www.baeldung.com/linux/username-not-in-sudoers-file</a></p>
+<h2 id="六、ubuntu-显示grub引导菜单"><a href="#六、ubuntu-显示grub引导菜单" class="headerlink" title="六、ubuntu 显示grub引导菜单"></a>六、ubuntu 显示grub引导菜单</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/default/grub</span><br><span class="line"># 将hidden 注释掉</span><br><span class="line"># :w! :q</span><br><span class="line">sudo update-grub</span><br></pre></td></tr></table></figure>
+
 
       </div>
       
@@ -198,7 +210,7 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-06-01 10:12:54
+              2024-06-04 21:24:38
             </span>
             
                   <span class="post-tags">
@@ -232,7 +244,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ubuntu%E9%85%8D%E7%BD%AE"><span class="toc-text">ubuntu配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BB%88%E7%AB%AF%E6%89%93%E4%B8%8D%E5%BC%80"><span class="toc-text">一、终端打不开</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85sublime"><span class="toc-text">二、安装sublime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%89%E8%A3%85git"><span class="toc-text">三、安装git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%88%9B%E5%BB%BA%E8%BF%9C%E7%A8%8B%E5%BA%93"><span class="toc-text">（一）创建远程库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%85%8B%E9%9A%86"><span class="toc-text">（二） 克隆</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BF%90%E8%A1%8Cmykernel"><span class="toc-text">四、运行mykernel</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ubuntu%E9%85%8D%E7%BD%AE"><span class="toc-text">ubuntu配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BB%88%E7%AB%AF%E6%89%93%E4%B8%8D%E5%BC%80"><span class="toc-text">一、终端打不开</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85sublime"><span class="toc-text">二、安装sublime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%89%E8%A3%85git"><span class="toc-text">三、安装git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%88%9B%E5%BB%BA%E8%BF%9C%E7%A8%8B%E5%BA%93"><span class="toc-text">（一）创建远程库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%85%8B%E9%9A%86"><span class="toc-text">（二） 克隆</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BF%90%E8%A1%8Cmyker7nel"><span class="toc-text">四、运行myker7nel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81ubuntu-%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90"><span class="toc-text">五、ubuntu 用户权限</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81ubuntu-%E6%98%BE%E7%A4%BAgrub%E5%BC%95%E5%AF%BC%E8%8F%9C%E5%8D%95"><span class="toc-text">六、ubuntu 显示grub引导菜单</span></a></li></ol></li></ol>
       
     </div>
   </div>
