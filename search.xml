@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>程序的机器表示</title>
+      <link href="/2024/06/05/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E8%A1%A8%E7%A4%BA/"/>
+      <url>/2024/06/05/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E8%A1%A8%E7%A4%BA/</url>
+      
+        <content type="html"><![CDATA[<h1 id="程序的机器级表示"><a href="#程序的机器级表示" class="headerlink" title="程序的机器级表示"></a>程序的机器级表示</h1><ul><li>c语言、汇编语言、机器代码之间的关系</li><li>数据表示和处理、控制的实现</li><li>c语言中的控制结构实现</li><li>过程的实现 （参数的传递、控制转移）</li><li>程序安全问题</li></ul><h2 id="一、背景知识"><a href="#一、背景知识" class="headerlink" title="一、背景知识"></a>一、背景知识</h2><p><code>IA32</code> <code>x86-64</code></p><p>IA32 是 Intel公司从16位处理器发展为32位 可以使用 4GB的内存</p><p>x86-64 是AMD开发出来的，最多可以使用 256TB 的内存空间 2 ^ 48</p><h2 id="二、c语言的执行过程"><a href="#二、c语言的执行过程" class="headerlink" title="二、c语言的执行过程"></a>二、c语言的执行过程</h2><p><strong>c语言</strong>——————<strong>预处理</strong>———-s——–<strong>汇编 (.s)</strong>————c———<strong>目标代码文件(.o)</strong>———————-<strong>可执行文件</strong></p><p>对于 c语言代码通过一下命令查看该汇编代码</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -O1 -S c文件</span><br></pre></td></tr></table></figure><p><strong>反汇编代码</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -d 目标文件</span><br></pre></td></tr></table></figure><h2 id="三、过程"><a href="#三、过程" class="headerlink" title="三、过程"></a>三、过程</h2><p>调用者(P)与被调用者(Q) —-参数的传递、控制的转移</p><p>程序栈：数据传递、局部变量转移的分配和释放</p><p><img src="/./%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E8%A1%A8%E7%A4%BA/%E7%A8%8B%E5%BA%8F%E6%A0%88.png" alt="程序栈"></p><p>被调用者的第i个参数存放在调用者栈帧的 %esp+4+4i 的位置，被调用者的参数存放在调用者的栈帧中。</p><p>gcc编译的代码有三个部分：</p><ul><li>“建立”， 初始化栈帧</li><li>“主体”，代码执行过程</li><li>‘结束“，恢复栈的状态，过程返回</li></ul><h4 id="建立"><a href="#建立" class="headerlink" title="建立"></a>建立</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sec:</span><br><span class="line">pushl %ebp</span><br><span class="line">movel %esp %ebp</span><br></pre></td></tr></table></figure><h4 id="主体"><a href="#主体" class="headerlink" title="主体"></a>主体</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">#### 结束</span><br><span class="line"></span><br><span class="line">```assembly</span><br><span class="line">sec:</span><br><span class="line">popl %ebp</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 操作系统 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>兴趣和生活</title>
       <link href="/2024/06/03/%E5%85%B4%E8%B6%A3%E5%92%8C%E7%94%9F%E6%B4%BB/"/>
       <url>/2024/06/03/%E5%85%B4%E8%B6%A3%E5%92%8C%E7%94%9F%E6%B4%BB/</url>
