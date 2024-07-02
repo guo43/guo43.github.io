@@ -1,0 +1,58 @@
+.page-main {
+    height: auto;
+    width: 75%;
+    background-color: antiquewhite;
+    margin: auto;
+    margin-top: 10rem;
+    /* margin-bottom: 12rem; */
+    padding: 1em 2em;
+}
+
+h1 {
+    font-weight: bold;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #666;
+    transition: color 1s linear;
+}
+
+h1:hover {
+    color: black;
+}
+
+h2 {
+    font-size: 30px;
+    margin: 5px 0px;
+}
+
+p {
+    margin: 10px 0px;
+    text-indent: 2em;
+    font-size: 20px;
+}
+
+p li {
+    display: block;
+    margin-left: 2em;
+}
+
+ul {
+    display: block;
+    padding: 0px 2em;
+}
+
+.page-main-title {
+    font-size: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    height: 3em;
+    padding: 0px 5em;
+    margin-bottom: 2em;
+}
+
+img {
+    height: 500px;
+}
