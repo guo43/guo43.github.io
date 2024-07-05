@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>ubuntu配置mysql</title>
+      <link href="/2024/07/05/ubuntu%E9%85%8D%E7%BD%AEmysql/"/>
+      <url>/2024/07/05/ubuntu%E9%85%8D%E7%BD%AEmysql/</url>
+      
+        <content type="html"><![CDATA[<h2 id="安装-mysql"><a href="#安装-mysql" class="headerlink" title="安装 mysql"></a>安装 mysql</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get insatll mysql-server</span><br><span class="line"></span><br><span class="line"># 启动</span><br><span class="line">sudo service mysql start</span><br><span class="line"># 重启</span><br><span class="line">sudo service mysql restart</span><br><span class="line">#关闭</span><br><span class="line">sudo service mysql stop</span><br></pre></td></tr></table></figure><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>第一次登录时，不用输入密码</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -u root -p</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> java开发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>小程序开发</title>
       <link href="/2024/06/07/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/"/>
       <url>/2024/06/07/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/</url>
