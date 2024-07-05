@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100vh;
+        }
+
+        .outer {
+            position: relative;
+            top: 25%;
+            left: 25%;
+            height: 100px;
+            width: 100px;
+            background-color: aqua;
+        }
+
+        .outer::after {
+            content: "";
+            position: absolute;
+            height: 200%;
+            width: 200%;
+            z-index: -1;
+            top: -50%;
+            left: -50%;
+            border-radius: 50%;
+            border:1px dashed black;
+            animation: run 100s linear;
+        }
+
+        @keyframes run {
+            0% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(1turn);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="outer"></div>
+</body>
+</html>
