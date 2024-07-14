@@ -15,7 +15,7 @@
   
   <title>
     
-      ubuntu配置mysql 
+      Maven 
       
       
       |
@@ -159,19 +159,19 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">ubuntu配置mysql</div>
+      <div class="post-title">Maven</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-07-14 19:15:23
+          2024-07-14 19:14:43
         </span>
         
               <span class="post-tags">
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/Java%E5%BC%80%E5%8F%91/" title="Java开发">
-                    #Java开发
+                  <a href="/tags/Java%E5%AD%A6%E4%B9%A0/" title="Java学习">
+                    #Java学习
                   </a>
                 </span>
                 
@@ -179,21 +179,47 @@
           
       </div>
       <div class="markdown-body">
-        <h2 id="安装-mysql"><a href="#安装-mysql" class="headerlink" title="安装 mysql"></a>安装 mysql</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get insatll mysql-server</span><br><span class="line"></span><br><span class="line"># 启动</span><br><span class="line">sudo service mysql start</span><br><span class="line"># 重启</span><br><span class="line">sudo service mysql restart</span><br><span class="line">#关闭</span><br><span class="line">sudo service mysql stop</span><br></pre></td></tr></table></figure>
+        <h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><h2 id="maven坐标"><a href="#maven坐标" class="headerlink" title="maven坐标"></a>maven坐标</h2><p>资源的唯一标识，通过该坐标可以唯一定位资源位置</p>
+<p>使用坐标定义项目或引入项目中需要的依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupld</span>&gt;</span>组织名称(通常是域名)<span class="tag">&lt;/<span class="name">groupld</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactld</span>&gt;</span>项目名称(模块名称)<span class="tag">&lt;/<span class="name">artifactld</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>当前项目版本号<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>第一次登录时，不用输入密码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -u root -p</span><br><span class="line">sudo mysql_secure_installation</span><br><span class="line"></span><br><span class="line"># 设置初始化密码</span><br><span class="line">alter user &#x27;root&#x27;@&#x27;localhost&#x27; identified by &#x27;123456&#x27;;</span><br><span class="line"></span><br><span class="line"># 在root用户下，创建新用户并制定密码</span><br><span class="line">create user &#x27;username&#x27;@&#x27;localhost&#x27; identified by &#x27;password&#x27;;</span><br></pre></td></tr></table></figure>
+<h2 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h2><ul>
+<li>依赖配置</li>
+<li>依赖传递</li>
+<li>依赖范围</li>
+<li>生命周期</li>
+</ul>
+<h3 id="依赖配置"><a href="#依赖配置" class="headerlink" title="依赖配置"></a>依赖配置</h3><p>当前项目运行所需要的jar包</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">groupld</span>&gt;</span><span class="tag">&lt;/<span class="name">groupld</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactld</span>&gt;</span><span class="tag">&lt;/<span class="name">artifactld</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span><span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>在root中创建，在一般用户下，没有创建数据库的权限。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create database db_name;</span><br><span class="line">create user &#x27;username&#x27;@&#x27;localhost&#x27; identified by &#x27;password&#x27;;</span><br><span class="line">grant all privileges on db_name.* to &#x27;username&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<h3 id="依赖传递"><a href="#依赖传递" class="headerlink" title="依赖传递"></a>依赖传递</h3><p>依赖具有传递性</p>
+<h3 id="依赖范围"><a href="#依赖范围" class="headerlink" title="依赖范围"></a>依赖范围</h3><p>默认情况，可以在任意地方使用</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">scope</span>&gt;</span><span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">scope值</span><br><span class="line">compile(默认) 111</span><br><span class="line">test		  010</span><br><span class="line">provided	  110</span><br><span class="line">runtime		  011</span><br></pre></td></tr></table></figure>
 
+<p>作用范围</p>
+<ul>
+<li>主程序 main文件夹</li>
+<li>测试程序 test文件夹</li>
+<li>是否参与打包运行 package</li>
+</ul>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ul>
+<li>clean 清理工作</li>
+<li>default 核心工作 编译、测试、打包、安装、部署等<ul>
+<li>compile</li>
+<li>test</li>
+<li>package</li>
+<li>install</li>
+</ul>
+</li>
+<li>site 生成报告、发布站点等</li>
+</ul>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/06/07/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/" target="_self">
+              <a href="/2024/07/14/Java%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E5%9B%BE/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -202,15 +228,15 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-07-14 19:15:23
+              2024-07-14 19:14:43
             </span>
             
                   <span class="post-tags">
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/Java%E5%BC%80%E5%8F%91/" title="Java开发">
-                        #Java开发
+                      <a href="/tags/Java%E5%AD%A6%E4%B9%A0/" title="Java学习">
+                        #Java学习
                       </a>
                     </span>
                     
@@ -219,7 +245,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2024/07/14/Arrays%E7%B1%BB/" target="_self">
+              <a href="/2024/07/14/tomcat/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
@@ -236,7 +262,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-mysql"><span class="toc-text">安装 mysql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">创建数据库</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Maven"><span class="toc-text">Maven</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#maven%E5%9D%90%E6%A0%87"><span class="toc-text">maven坐标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86"><span class="toc-text">依赖管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E9%85%8D%E7%BD%AE"><span class="toc-text">依赖配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E4%BC%A0%E9%80%92"><span class="toc-text">依赖传递</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E8%8C%83%E5%9B%B4"><span class="toc-text">依赖范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">生命周期</span></a></li></ol></li></ol></li></ol>
       
     </div>
   </div>
@@ -524,12 +550,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + ubuntu%E9%85%8D%E7%BD%AEmysql + '&url=' + http%3A%2F%2Fexample.com%2F2024%2F07%2F05%2Fubuntu%25E9%2585%258D%25E7%25BD%25AEmysql%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Maven + '&url=' + http%3A%2F%2Fexample.com%2F2024%2F07%2F14%2FMaven%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2024/07/05/ubuntu%E9%85%8D%E7%BD%AEmysql/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2024/07/14/Maven/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         

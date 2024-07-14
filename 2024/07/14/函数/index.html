@@ -15,7 +15,7 @@
   
   <title>
     
-      ubuntu配置mysql 
+      函数 
       
       
       |
@@ -159,19 +159,19 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">ubuntu配置mysql</div>
+      <div class="post-title">函数</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-07-14 19:15:23
+          2024-07-14 19:15:43
         </span>
         
               <span class="post-tags">
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/Java%E5%BC%80%E5%8F%91/" title="Java开发">
-                    #Java开发
+                  <a href="/tags/MySQL%E5%AD%A6%E4%B9%A0/" title="MySQL学习">
+                    #MySQL学习
                   </a>
                 </span>
                 
@@ -179,13 +179,19 @@
           
       </div>
       <div class="markdown-body">
-        <h2 id="安装-mysql"><a href="#安装-mysql" class="headerlink" title="安装 mysql"></a>安装 mysql</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get insatll mysql-server</span><br><span class="line"></span><br><span class="line"># 启动</span><br><span class="line">sudo service mysql start</span><br><span class="line"># 重启</span><br><span class="line">sudo service mysql restart</span><br><span class="line">#关闭</span><br><span class="line">sudo service mysql stop</span><br></pre></td></tr></table></figure>
+        <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">concat();</span><br><span class="line"><span class="built_in">lower</span>();</span><br><span class="line"><span class="built_in">upper</span>();</span><br><span class="line">lpad(str, n, pad); <span class="operator">/</span><span class="operator">/</span> lpad(<span class="string">&#x27;1&#x27;</span>, <span class="number">2</span>, <span class="string">&#x27;0&#x27;</span>); <span class="number">01</span></span><br><span class="line">rpad(str, n, pad);</span><br><span class="line"><span class="built_in">trim</span>(); <span class="operator">/</span><span class="operator">/</span> 去掉空格</span><br><span class="line"><span class="built_in">substring</span>(str, <span class="keyword">start</span>, len);</span><br></pre></td></tr></table></figure>
 
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>第一次登录时，不用输入密码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -u root -p</span><br><span class="line">sudo mysql_secure_installation</span><br><span class="line"></span><br><span class="line"># 设置初始化密码</span><br><span class="line">alter user &#x27;root&#x27;@&#x27;localhost&#x27; identified by &#x27;123456&#x27;;</span><br><span class="line"></span><br><span class="line"># 在root用户下，创建新用户并制定密码</span><br><span class="line">create user &#x27;username&#x27;@&#x27;localhost&#x27; identified by &#x27;password&#x27;;</span><br></pre></td></tr></table></figure>
 
-<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>在root中创建，在一般用户下，没有创建数据库的权限。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create database db_name;</span><br><span class="line">create user &#x27;username&#x27;@&#x27;localhost&#x27; identified by &#x27;password&#x27;;</span><br><span class="line">grant all privileges on db_name.* to &#x27;username&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数值"><a href="#数值" class="headerlink" title="数值"></a>数值</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ceil</span>(); <span class="operator">/</span><span class="operator">/</span> 向上取整</span><br><span class="line"><span class="built_in">floor</span>(); <span class="operator">/</span><span class="operator">/</span> 向下取整</span><br><span class="line"><span class="built_in">mod</span>(x, y);</span><br><span class="line">rand(); <span class="operator">/</span><span class="operator">/</span> 返回<span class="number">0</span><span class="operator">~</span><span class="number">1</span>内的随机数</span><br><span class="line">round(x, y);x的四舍五入值,y位小数</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">curdate(); <span class="operator">/</span><span class="operator">/</span> 当前日期</span><br><span class="line">curtime(); <span class="operator">/</span><span class="operator">/</span> 当前时间</span><br><span class="line">now();     <span class="operator">/</span><span class="operator">/</span> 当前日期和时间</span><br><span class="line"><span class="keyword">year</span>(<span class="type">date</span>);<span class="operator">/</span><span class="operator">/</span> 获取指定<span class="type">date</span>的年份</span><br><span class="line"><span class="keyword">month</span>(<span class="type">date</span>); <span class="operator">/</span><span class="operator">/</span> 获取指定年份</span><br><span class="line"><span class="keyword">day</span>(<span class="type">date</span>);  <span class="operator">/</span><span class="operator">/</span> 日期</span><br><span class="line">datediff(date1, date2); <span class="operator">/</span><span class="operator">/</span> 返回之间的天数</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(<span class="keyword">value</span>, t, f);  如果<span class="literal">true</span> 返回t, 否则f</span><br><span class="line">ifnull(value1, value2);</span><br><span class="line"><span class="keyword">case</span> <span class="keyword">when</span> val1 <span class="keyword">then</span> res1 <span class="keyword">else</span> <span class="keyword">default</span> <span class="keyword">end</span>; <span class="literal">true</span> 返回res1, 否则返回<span class="keyword">default</span> 默认值</span><br></pre></td></tr></table></figure>
 
 
       </div>
@@ -193,7 +199,7 @@
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/06/07/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/" target="_self">
+              <a href="/2024/07/14/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -202,15 +208,15 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-07-14 19:15:23
+              2024-07-14 19:15:43
             </span>
             
                   <span class="post-tags">
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/Java%E5%BC%80%E5%8F%91/" title="Java开发">
-                        #Java开发
+                      <a href="/tags/MySQL%E5%AD%A6%E4%B9%A0/" title="MySQL学习">
+                        #MySQL学习
                       </a>
                     </span>
                     
@@ -219,7 +225,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2024/07/14/Arrays%E7%B1%BB/" target="_self">
+              <a href="/2024/07/14/%E7%BA%A6%E6%9D%9F/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
@@ -236,7 +242,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-mysql"><span class="toc-text">安装 mysql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">创建数据库</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC"><span class="toc-text">数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F"><span class="toc-text">日期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B"><span class="toc-text">流程</span></a></li></ol></li></ol>
       
     </div>
   </div>
@@ -524,12 +530,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + ubuntu%E9%85%8D%E7%BD%AEmysql + '&url=' + http%3A%2F%2Fexample.com%2F2024%2F07%2F05%2Fubuntu%25E9%2585%258D%25E7%25BD%25AEmysql%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%87%BD%E6%95%B0 + '&url=' + http%3A%2F%2Fexample.com%2F2024%2F07%2F14%2F%25E5%2587%25BD%25E6%2595%25B0%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2024/07/05/ubuntu%E9%85%8D%E7%BD%AEmysql/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2024/07/14/%E5%87%BD%E6%95%B0/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         

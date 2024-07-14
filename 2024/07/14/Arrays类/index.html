@@ -15,7 +15,7 @@
   
   <title>
     
-      ubuntu配置mysql 
+      Arrays类 
       
       
       |
@@ -159,19 +159,19 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">ubuntu配置mysql</div>
+      <div class="post-title">Arrays类</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-07-14 19:15:23
+          2024-07-14 19:14:02
         </span>
         
               <span class="post-tags">
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/Java%E5%BC%80%E5%8F%91/" title="Java开发">
-                    #Java开发
+                  <a href="/tags/Java%E5%AD%A6%E4%B9%A0/" title="Java学习">
+                    #Java学习
                   </a>
                 </span>
                 
@@ -179,21 +179,22 @@
           
       </div>
       <div class="markdown-body">
-        <h2 id="安装-mysql"><a href="#安装-mysql" class="headerlink" title="安装 mysql"></a>安装 mysql</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get insatll mysql-server</span><br><span class="line"></span><br><span class="line"># 启动</span><br><span class="line">sudo service mysql start</span><br><span class="line"># 重启</span><br><span class="line">sudo service mysql restart</span><br><span class="line">#关闭</span><br><span class="line">sudo service mysql stop</span><br></pre></td></tr></table></figure>
-
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>第一次登录时，不用输入密码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -u root -p</span><br><span class="line">sudo mysql_secure_installation</span><br><span class="line"></span><br><span class="line"># 设置初始化密码</span><br><span class="line">alter user &#x27;root&#x27;@&#x27;localhost&#x27; identified by &#x27;123456&#x27;;</span><br><span class="line"></span><br><span class="line"># 在root用户下，创建新用户并制定密码</span><br><span class="line">create user &#x27;username&#x27;@&#x27;localhost&#x27; identified by &#x27;password&#x27;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>在root中创建，在一般用户下，没有创建数据库的权限。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create database db_name;</span><br><span class="line">create user &#x27;username&#x27;@&#x27;localhost&#x27; identified by &#x27;password&#x27;;</span><br><span class="line">grant all privileges on db_name.* to &#x27;username&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
+        <h2 id="Arrays-类"><a href="#Arrays-类" class="headerlink" title="Arrays 类"></a>Arrays 类</h2><p>数组工具类</p>
+<p>常用功能：</p>
+<ul>
+<li>给数组赋值：fill 方法</li>
+<li>排序</li>
+<li>比较数组 equals 比较元素值是否相等</li>
+<li>查找数组元素 binarySearch 二分查找</li>
+</ul>
+<h4 id="稀疏数组"><a href="#稀疏数组" class="headerlink" title="稀疏数组"></a>稀疏数组</h4><p>数组中许多值没有意义，或者为同一值的数组是，使用稀疏数组保存数据。</p>
 
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/06/07/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/" target="_self">
+              <a href="/2024/07/05/ubuntu%E9%85%8D%E7%BD%AEmysql/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -202,15 +203,15 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-07-14 19:15:23
+              2024-07-14 19:14:02
             </span>
             
                   <span class="post-tags">
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/Java%E5%BC%80%E5%8F%91/" title="Java开发">
-                        #Java开发
+                      <a href="/tags/Java%E5%AD%A6%E4%B9%A0/" title="Java学习">
+                        #Java学习
                       </a>
                     </span>
                     
@@ -219,7 +220,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2024/07/14/Arrays%E7%B1%BB/" target="_self">
+              <a href="/2024/07/14/GUI%E7%BC%96%E7%A8%8B/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
@@ -236,7 +237,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-mysql"><span class="toc-text">安装 mysql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">创建数据库</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Arrays-%E7%B1%BB"><span class="toc-text">Arrays 类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84"><span class="toc-text">稀疏数组</span></a></li></ol></li></ol></li></ol>
       
     </div>
   </div>
@@ -524,12 +525,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + ubuntu%E9%85%8D%E7%BD%AEmysql + '&url=' + http%3A%2F%2Fexample.com%2F2024%2F07%2F05%2Fubuntu%25E9%2585%258D%25E7%25BD%25AEmysql%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + Arrays%E7%B1%BB + '&url=' + http%3A%2F%2Fexample.com%2F2024%2F07%2F14%2FArrays%25E7%25B1%25BB%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2024/07/05/ubuntu%E9%85%8D%E7%BD%AEmysql/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2024/07/14/Arrays%E7%B1%BB/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         

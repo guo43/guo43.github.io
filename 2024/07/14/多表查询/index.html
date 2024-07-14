@@ -15,7 +15,7 @@
   
   <title>
     
-      ubuntu配置mysql 
+      多表查询 
       
       
       |
@@ -159,19 +159,19 @@
   <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
   <div class="container post-details" id="post-details">
     <div class="post-content">
-      <div class="post-title">ubuntu配置mysql</div>
+      <div class="post-title">多表查询</div>
       <div class="post-attach">
         <span class="post-pubtime">
           <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-          2024-07-14 19:15:23
+          2024-07-14 19:15:34
         </span>
         
               <span class="post-tags">
                 <i class="iconfont icon-tags mr-10" title="标签"></i>
                 
                 <span class="span--tag mr-8">
-                  <a href="/tags/Java%E5%BC%80%E5%8F%91/" title="Java开发">
-                    #Java开发
+                  <a href="/tags/MySQL%E5%AD%A6%E4%B9%A0/" title="MySQL学习">
+                    #MySQL学习
                   </a>
                 </span>
                 
@@ -179,21 +179,42 @@
           
       </div>
       <div class="markdown-body">
-        <h2 id="安装-mysql"><a href="#安装-mysql" class="headerlink" title="安装 mysql"></a>安装 mysql</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get insatll mysql-server</span><br><span class="line"></span><br><span class="line"># 启动</span><br><span class="line">sudo service mysql start</span><br><span class="line"># 重启</span><br><span class="line">sudo service mysql restart</span><br><span class="line">#关闭</span><br><span class="line">sudo service mysql stop</span><br></pre></td></tr></table></figure>
+        <h1 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h1><h2 id="多表关系"><a href="#多表关系" class="headerlink" title="多表关系"></a>多表关系</h2><ul>
+<li>一对多（多对一）<ul>
+<li>在多的一方建立外键，指向一的一方的主键</li>
+</ul>
+</li>
+<li>多对多<ul>
+<li>例如，学生、课程</li>
+<li>建立第三张中间表，中间表至少包含两个外键，分别关联两方主键</li>
+</ul>
+</li>
+<li>一对一<ul>
+<li>例如，用户与用户</li>
+<li>单表拆分，基础字段与详细信息放在两张表中</li>
+</ul>
+</li>
+</ul>
+<h2 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h2><p> 查询A、B交集部分数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> 字段列表 <span class="keyword">from</span> 表<span class="number">1</span>，表<span class="number">2</span> <span class="keyword">where</span> 条件...;</span><br><span class="line"><span class="keyword">select</span> 字段列表 <span class="keyword">from</span> 表<span class="number">1</span> <span class="keyword">inner</span> <span class="keyword">join</span> 表二 <span class="keyword">on</span> 连接条件;</span><br></pre></td></tr></table></figure>
 
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>第一次登录时，不用输入密码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -u root -p</span><br><span class="line">sudo mysql_secure_installation</span><br><span class="line"></span><br><span class="line"># 设置初始化密码</span><br><span class="line">alter user &#x27;root&#x27;@&#x27;localhost&#x27; identified by &#x27;123456&#x27;;</span><br><span class="line"></span><br><span class="line"># 在root用户下，创建新用户并制定密码</span><br><span class="line">create user &#x27;username&#x27;@&#x27;localhost&#x27; identified by &#x27;password&#x27;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>在root中创建，在一般用户下，没有创建数据库的权限。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create database db_name;</span><br><span class="line">create user &#x27;username&#x27;@&#x27;localhost&#x27; identified by &#x27;password&#x27;;</span><br><span class="line">grant all privileges on db_name.* to &#x27;username&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
 
 
+<h2 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h2><ul>
+<li><p>左外连接：查询左表所有数据，以及两张表交集部分数据</p>
+</li>
+<li><pre><code class="sql">select 字段列表 from 表1 left outer join 表2 on 条件;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- </span><br><span class="line"></span><br><span class="line">- 右外连接：查询右表所有数据，以及两张表交集部分数据</span><br><span class="line"></span><br><span class="line">## 自连接</span><br><span class="line"></span><br><span class="line">当前表与自身的连接查询，自连接必须使用表别名</span><br><span class="line"></span><br><span class="line">```sql</span><br><span class="line">select 字段列表 from 表a 别名a join 表a 别名b on 条件...;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><h2 id="多表查询案例"><a href="#多表查询案例" class="headerlink" title="多表查询案例"></a>多表查询案例</h2>
       </div>
       
         <div class="prev-or-next">
           <div class="post-foot-next">
             
-              <a href="/2024/06/07/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/" target="_self">
+              <a href="/2024/07/14/MySQL%E5%88%9D%E8%AF%86/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
                 <span>上一页</span>
               </a>
@@ -202,15 +223,15 @@
           <div class="post-attach">
             <span class="post-pubtime">
               <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
-              2024-07-14 19:15:23
+              2024-07-14 19:15:34
             </span>
             
                   <span class="post-tags">
                     <i class="iconfont icon-tags mr-10" title="标签"></i>
                     
                     <span class="span--tag mr-8">
-                      <a href="/tags/Java%E5%BC%80%E5%8F%91/" title="Java开发">
-                        #Java开发
+                      <a href="/tags/MySQL%E5%AD%A6%E4%B9%A0/" title="MySQL学习">
+                        #MySQL学习
                       </a>
                     </span>
                     
@@ -219,7 +240,7 @@
           </div>
           <div class="post-foot-prev">
             
-              <a href="/2024/07/14/Arrays%E7%B1%BB/" target="_self">
+              <a href="/2024/07/14/%E5%87%BD%E6%95%B0/" target="_self">
                 <span>下一页</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
@@ -236,7 +257,7 @@
     <div class="title">目录</div>
     <div class="catalog-content">
       
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-mysql"><span class="toc-text">安装 mysql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">创建数据库</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="toc-text">多表查询</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%A1%A8%E5%85%B3%E7%B3%BB"><span class="toc-text">多表关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E8%BF%9E%E6%8E%A5"><span class="toc-text">内连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E8%BF%9E%E6%8E%A5"><span class="toc-text">外连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-text">子查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E6%A1%88%E4%BE%8B"><span class="toc-text">多表查询案例</span></a></li></ol></li></ol>
       
     </div>
   </div>
@@ -524,12 +545,12 @@
       </a>
       <div class="share-content hidden">
         
-          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + ubuntu%E9%85%8D%E7%BD%AEmysql + '&url=' + http%3A%2F%2Fexample.com%2F2024%2F07%2F05%2Fubuntu%25E9%2585%258D%25E7%25BD%25AEmysql%2F + '" target="_blank" title="Twitter">
+          <a class="share-item" href="https://twitter.com/intent/tweet?text=' + %E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2 + '&url=' + http%3A%2F%2Fexample.com%2F2024%2F07%2F14%2F%25E5%25A4%259A%25E8%25A1%25A8%25E6%259F%25A5%25E8%25AF%25A2%2F + '" target="_blank" title="Twitter">
             <i class="iconfont icon-twitter"></i>
           </a>
         
         
-          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2024/07/05/ubuntu%E9%85%8D%E7%BD%AEmysql/" target="_blank" title="Facebook">
+          <a class="share-item" href="https://www.facebook.com/sharer.php?u=http://example.com/2024/07/14/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" target="_blank" title="Facebook">
             <i class="iconfont icon-facebooksquare"></i>
           </a>
         
