@@ -6,9 +6,9 @@
 
 ```javascript
 const GITHUB_CONFIG = {
-    owner: 'yourusername',              // 您的 GitHub 用户名
-    repo: 'yourusername.github.io',     // 仓库名称
-    branch: 'main',                     // 分支名称（main 或 master）
+    owner: 'guo43',              // 您的 GitHub 用户名
+    repo: 'guo43.github.io',     // 仓库名称
+    branch: 'master',                     // 分支名称（main 或 master）
     postsPath: 'posts'                  // 文章目录路径
 };
 ```

@@ -2,11 +2,11 @@
 // 请根据您的实际情况修改以下配置
 const GITHUB_CONFIG = {
     // GitHub 用户名
-    owner: 'yourusername',
+    owner: 'guo43',
     // 仓库名称（如果是 GitHub Pages，通常是 yourusername.github.io）
-    repo: 'yourusername.github.io',
+    repo: 'guo43.github.io',
     // 分支名称（通常是 main 或 master）
-    branch: 'main',
+    branch: 'master',
     // 文章目录路径
     postsPath: 'posts'
 };
