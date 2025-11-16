@@ -124,5 +124,12 @@ function renderPostsList() {
     `).join('');
     
     postsList.innerHTML = html;
+    
+    // 重新初始化滚动动画（因为文章是动态加载的）
+    if (typeof initScrollAnimations === 'function') {
+        setTimeout(() => {
+            initScrollAnimations();
+        }, 100);
+    }
 }
 

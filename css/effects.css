@@ -1,0 +1,266 @@
+/* 特效样式文件 */
+
+/* 页面淡入动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 提高优先级，确保动画生效 */
+html body {
+    animation: fadeIn 0.6s ease-out !important;
+}
+
+/* 滚动淡入动画 */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 文章卡片悬停效果 */
+.post-item {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    padding: 25px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.post-item:hover {
+    background-color: #fafafa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding-left: 25px;
+}
+
+/* 导航链接下划线动画 */
+.nav a {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #0066cc;
+    transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
+/* 返回顶部按钮 */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.back-to-top.visible {
+    display: flex !important;
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
+
+.back-to-top:hover {
+    background-color: #0052a3;
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 102, 204, 0.4);
+}
+
+.back-to-top:active {
+    transform: scale(0.95);
+}
+
+/* 代码块复制按钮 */
+.code-block-wrapper {
+    position: relative;
+}
+
+.code-block-wrapper pre {
+    position: relative;
+}
+
+.copy-code-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.code-block-wrapper:hover .copy-code-btn {
+    opacity: 1;
+}
+
+.copy-code-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.copy-code-btn.copied {
+    background-color: #28a745;
+}
+
+/* 标题动画 */
+.article-title,
+.post-title {
+    position: relative;
+}
+
+.article-title::before,
+.post-title::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 0;
+    background-color: #0066cc;
+    transition: height 0.3s ease;
+}
+
+.article-title:hover::before,
+.post-title:hover::before {
+    height: 60%;
+}
+
+/* 链接悬停效果增强 */
+.article-content a,
+.post-title a {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.article-content a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #0066cc;
+    transition: width 0.3s ease;
+}
+
+.article-content a:hover::before {
+    width: 100%;
+}
+
+/* 图片加载动画 */
+.article-content img {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.article-content img.loaded {
+    opacity: 1;
+}
+
+/* 加载动画 */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0, 102, 204, 0.3);
+    border-radius: 50%;
+    border-top-color: #0066cc;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 平滑滚动 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 文章内容段落动画 */
+.article-content p,
+.article-content li {
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.article-content p:nth-child(1) { animation-delay: 0.1s; }
+.article-content p:nth-child(2) { animation-delay: 0.2s; }
+.article-content p:nth-child(3) { animation-delay: 0.3s; }
+.article-content p:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .post-item:hover {
+        transform: none;
+    }
+}
+
+/* 暗色模式支持（可选） */
+@media (prefers-color-scheme: dark) {
+    .post-item:hover {
+        background-color: #1a1a1a;
+    }
+}
+

@@ -69,6 +69,19 @@ async function loadArticle(filename) {
         // 更新页面标题
         document.title = `${title} - 我的博客`;
         
+        // 重新初始化特效（因为内容是动态加载的）
+        setTimeout(() => {
+            if (typeof initCodeCopyButtons === 'function') {
+                initCodeCopyButtons();
+            }
+            if (typeof initImageLazyLoad === 'function') {
+                initImageLazyLoad();
+            }
+            if (typeof initScrollAnimations === 'function') {
+                initScrollAnimations();
+            }
+        }, 100);
+        
     } catch (error) {
         console.error('加载文章失败:', error);
         articleContent.innerHTML = `
