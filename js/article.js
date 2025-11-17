@@ -69,6 +69,15 @@ async function loadArticle(filename) {
         // 更新页面标题
         document.title = `${title} - 我的博客`;
         
+        // 代码高亮
+        if (typeof hljs !== 'undefined') {
+            setTimeout(() => {
+                document.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightElement(block);
+                });
+            }, 50);
+        }
+        
         // 重新初始化特效（因为内容是动态加载的）
         setTimeout(() => {
             if (typeof initCodeCopyButtons === 'function') {
@@ -80,7 +89,7 @@ async function loadArticle(filename) {
             if (typeof initScrollAnimations === 'function') {
                 initScrollAnimations();
             }
-        }, 100);
+        }, 200);
         
     } catch (error) {
         console.error('加载文章失败:', error);
