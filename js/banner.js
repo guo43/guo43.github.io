@@ -6,10 +6,13 @@ const BANNER_CONFIG = {
     width: 1200,
     height: 200,
     
+    // 图片分类关键词（风景、艺术、素描）
+    keywords: ['landscape', 'art', 'sketch', 'nature', 'painting', 'drawing', 'watercolor', 'abstract'],
+    
     // API 优先级列表（按顺序尝试）
-    // 'picsum' - 最可靠，无需 API key，但不支持分类
-    // 'unsplash' - 支持分类但可能不稳定
-    apiPriority: ['picsum', 'unsplash'],
+    // 'unsplash' - 支持分类，优先尝试
+    // 'picsum' - 备用方案，不支持分类但更可靠
+    apiPriority: ['unsplash', 'picsum'],
     
     // 当前尝试的 API 索引
     currentApiIndex: 0,
@@ -22,16 +25,24 @@ function getRandomImageUrl(apiType = null) {
     const api = apiType || BANNER_CONFIG.apiPriority[BANNER_CONFIG.currentApiIndex];
     
     switch (api) {
-        case 'picsum':
-            // Picsum Photos - 最可靠，无需 API key
-            // 虽然不支持分类，但图片质量不错
-            return `https://picsum.photos/${BANNER_CONFIG.width}/${BANNER_CONFIG.height}?random=${random}&t=${timestamp}`;
-        
         case 'unsplash':
-            // Unsplash Source API - 支持分类搜索（可能不稳定）
-            // 格式：https://source.unsplash.com/宽度x高度/?关键词
-            const keywords = 'landscape,art,sketch,nature,painting,drawing';
-            return `https://source.unsplash.com/${BANNER_CONFIG.width}x${BANNER_CONFIG.height}/?${keywords}&sig=${random}&t=${timestamp}`;
+            // Unsplash Source API - 支持分类搜索
+            // 尝试多种 URL 格式以提高成功率
+            const keywords = BANNER_CONFIG.keywords.join(',');
+            
+            // 方法1：使用逗号分隔的关键词
+            const url1 = `https://source.unsplash.com/${BANNER_CONFIG.width}x${BANNER_CONFIG.height}/?${keywords}&sig=${random}&t=${timestamp}`;
+            
+            // 方法2：随机选择一个关键词
+            const randomKeyword = BANNER_CONFIG.keywords[Math.floor(Math.random() * BANNER_CONFIG.keywords.length)];
+            const url2 = `https://source.unsplash.com/${BANNER_CONFIG.width}x${BANNER_CONFIG.height}/?${randomKeyword}&sig=${random}&t=${timestamp}`;
+            
+            // 随机选择一种方法
+            return Math.random() > 0.5 ? url1 : url2;
+        
+        case 'picsum':
+            // Picsum Photos - 备用方案，不支持分类但更可靠
+            return `https://picsum.photos/${BANNER_CONFIG.width}/${BANNER_CONFIG.height}?random=${random}&t=${timestamp}`;
         
         default:
             return `https://picsum.photos/${BANNER_CONFIG.width}/${BANNER_CONFIG.height}?random=${random}&t=${timestamp}`;
@@ -39,7 +50,7 @@ function getRandomImageUrl(apiType = null) {
 }
 
 // 加载横幅图片
-function loadBannerImage(apiIndex = 0) {
+function loadBannerImage(apiIndex = 0, retryCount = 0) {
     const bannerImage = document.getElementById('bannerImage');
     
     if (!bannerImage) {
@@ -60,16 +71,26 @@ function loadBannerImage(apiIndex = 0) {
     
     // 获取当前 API 的图片 URL
     const apiType = BANNER_CONFIG.apiPriority[apiIndex];
+    
+    // 对于 Unsplash，如果失败可以重试（最多3次）
+    const maxRetries = apiType === 'unsplash' ? 3 : 1;
+    if (retryCount >= maxRetries) {
+        console.warn(`图片加载失败，已重试 ${retryCount} 次，尝试下一个 API`);
+        loadBannerImage(apiIndex + 1, 0);
+        return;
+    }
+    
     const imageUrl = getRandomImageUrl(apiType);
     
     // 创建新的 Image 对象预加载
     const img = new Image();
     
-    // 设置超时（8秒）
+    // 设置超时（Unsplash 可能需要更长时间，Picsum 较快）
+    const timeoutDuration = apiType === 'unsplash' ? 10000 : 5000;
     const timeout = setTimeout(() => {
-        console.warn(`图片加载超时 (${apiType})，尝试下一个 API`);
+        console.warn(`图片加载超时 (${apiType})，重试 ${retryCount + 1}/${maxRetries}`);
         img.onerror();
-    }, 8000);
+    }, timeoutDuration);
     
     img.onload = function() {
         clearTimeout(timeout);
@@ -82,13 +103,23 @@ function loadBannerImage(apiIndex = 0) {
         if (container) {
             container.style.setProperty('--loading', 'none');
         }
+        
+        console.log(`✅ 图片加载成功 (${apiType})`);
     };
     
     img.onerror = function() {
         clearTimeout(timeout);
-        // 如果加载失败，尝试下一个 API
-        console.warn(`图片加载失败 (${apiType})，尝试下一个 API`);
-        loadBannerImage(apiIndex + 1);
+        // 如果加载失败，重试或尝试下一个 API
+        if (retryCount < maxRetries - 1) {
+            console.warn(`图片加载失败 (${apiType})，重试 ${retryCount + 1}/${maxRetries}`);
+            // 延迟一下再重试
+            setTimeout(() => {
+                loadBannerImage(apiIndex, retryCount + 1);
+            }, 500);
+        } else {
+            console.warn(`图片加载失败 (${apiType})，尝试下一个 API`);
+            loadBannerImage(apiIndex + 1, 0);
+        }
     };
     
     // 开始加载
