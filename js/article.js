@@ -4,21 +4,55 @@ function getUrlParameter(name) {
     return urlParams.get(name);
 }
 
+let postsMetadataCache = null;
+
 // 页面加载完成后加载文章内容
 document.addEventListener('DOMContentLoaded', function() {
-    const filename = getUrlParameter('file');
+    const identifier = getPreferredIdentifier();
     
-    if (!filename) {
+    if (!identifier) {
         document.getElementById('articleContent').innerHTML = 
-            '<p style="text-align: center; color: #999; padding: 40px 0;">缺少文章文件名参数</p>';
+            '<p style="text-align: center; color: #999; padding: 40px 0;">缺少文章参数</p>';
         return;
     }
     
-    loadArticle(filename);
+    loadArticle(identifier);
 });
 
+function getPreferredIdentifier() {
+    return getUrlParameter('slug') || getUrlParameter('file');
+}
+
+async function getPostsMetadata() {
+    if (postsMetadataCache) {
+        return postsMetadataCache;
+    }
+    
+    const response = await fetch(getPostsDataUrl(), { cache: 'no-store' });
+    if (!response.ok) {
+        throw new Error('无法加载文章索引');
+    }
+    
+    postsMetadataCache = await response.json();
+    return postsMetadataCache;
+}
+
+async function findPost(identifier) {
+    const metadata = await getPostsMetadata();
+    if (!Array.isArray(metadata)) return null;
+    
+    return metadata.find(post => {
+        if (!post) return false;
+        const baseFilename = post.filename ? post.filename.replace(/\.md$/i, '') : '';
+        return post.slug === identifier
+            || post.id === identifier
+            || post.filename === identifier
+            || baseFilename === identifier;
+    });
+}
+
 // 加载文章内容
-async function loadArticle(filename) {
+async function loadArticle(identifier) {
     const articleContent = document.getElementById('articleContent');
     
     // 显示加载状态
@@ -32,34 +66,29 @@ async function loadArticle(filename) {
     `;
     
     try {
-        // 从 GitHub 获取 Markdown 文件内容
-        const response = await fetch(getPostDownloadUrl(filename));
+        const post = await findPost(identifier);
+        
+        if (!post) {
+            throw new Error('文章不存在或尚未生成');
+        }
+        
+        const response = await fetch(getPostHtmlUrl(post.slug), { cache: 'no-store' });
         
         if (!response.ok) {
             if (response.status === 404) {
-                throw new Error('文章文件不存在');
+                throw new Error('文章内容未生成，请重新构建');
             }
             throw new Error(`加载失败: ${response.status}`);
         }
         
-        const markdown = await response.text();
-        
-        // 解析前置元数据
-        const { metadata, content } = parseFrontMatter(markdown);
-        
-        // 提取文章信息
-        const filenameInfo = extractInfoFromFilename(filename);
-        const title = metadata.title || extractTitleFromContent(content) || filenameInfo.title;
-        const date = metadata.date || filenameInfo.date;
-        
-        // 使用 marked.js 将 Markdown 转换为 HTML
-        const html = marked.parse(content);
+        const html = await response.text();
+        const displayDate = formatDate(post.date);
         
         // 渲染到页面
         articleContent.innerHTML = `
             <div class="article-header">
-                <h1 class="article-title">${title}</h1>
-                <div class="article-meta">${formatDate(date)}</div>
+                <h1 class="article-title">${post.title}</h1>
+                <div class="article-meta">${displayDate || ''}</div>
             </div>
             <div class="article-content">
                 ${html}
@@ -67,7 +96,7 @@ async function loadArticle(filename) {
         `;
         
         // 更新页面标题
-        document.title = `${title} - 我的博客`;
+        document.title = `${post.title} - 我的博客`;
         
         // 代码高亮
         if (typeof hljs !== 'undefined') {

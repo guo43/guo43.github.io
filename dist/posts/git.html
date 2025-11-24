@@ -1,0 +1,76 @@
+<h1>Git 使用指南</h1>
+<p>Git 是一个分布式版本控制系统，用于管理代码和文档的版本。它可以帮助开发者高效协作、追踪历史记录、管理分支与合并代码。本文将详细介绍 Git 的使用方法、远程仓库操作、分支管理及其工作原理。</p>
+<hr>
+<h2>目录</h2>
+<ol>
+<li><a href="#git-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5">Git 基础概念</a></li>
+<li><a href="#git-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE">Git 安装与配置</a></li>
+<li><a href="#git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">Git 常用命令</a></li>
+<li><a href="#%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%93%8D%E4%BD%9C">远程仓库操作</a></li>
+<li><a href="#%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86">分支管理</a></li>
+<li><a href="#git-%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">Git 工作原理</a></li>
+<li><a href="#%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C%E7%A4%BA%E4%BE%8B">常见操作示例</a></li>
+</ol>
+<hr>
+<h2>Git 基础概念</h2>
+<ul>
+<li><p><strong>工作区（Working Directory）</strong><br>本地可见的文件目录，用于编辑和修改代码。</p>
+</li>
+<li><p><strong>暂存区（Staging Area / Index）</strong><br>临时存储已修改但未提交的文件，可控制哪些修改进入下一次提交。</p>
+</li>
+<li><p><strong>本地仓库（Local Repository）</strong><br>保存完整版本历史的仓库，位于 <code>.git</code> 目录下。</p>
+</li>
+<li><p><strong>远程仓库（Remote Repository）</strong><br>托管在服务器上的仓库，如 GitHub、GitLab、Gitee，可与本地仓库同步。</p>
+</li>
+</ul>
+<hr>
+<h2>Git 安装与配置</h2>
+<h3>安装 Git</h3>
+<ul>
+<li>Windows: <a href="https://git-scm.com/download/win">Git 官网下载</a></li>
+<li>macOS: <code>brew install git</code></li>
+<li>Linux: <code>sudo apt install git</code> 或 <code>sudo yum install git</code></li>
+</ul>
+<h3>基本配置</h3>
+<pre><code class="language-bash">git config --global user.name &quot;你的名字&quot;
+git config --global user.email &quot;你的邮箱&quot;
+git config --global core.editor &quot;vim&quot;  # 可选，设置默认编辑器
+git config --list  # 查看当前配置
+</code></pre>
+<h3>Git 常用命令</h3>
+<h4>仓库操作</h4>
+<pre><code class="language-bash">git init           # 初始化本地仓库
+git clone &lt;url&gt;    # 克隆远程仓库到本地
+</code></pre>
+<h4>文件操作</h4>
+<pre><code class="language-bash">git status         # 查看文件状态
+git add &lt;file&gt;     # 添加文件到暂存区
+git add .          # 添加所有修改文件
+git commit -m &quot;提交说明&quot;  # 提交到本地仓库
+git diff           # 查看未暂存的修改
+git log            # 查看提交历史
+</code></pre>
+<h4>远程仓库操作</h4>
+<pre><code class="language-bash">git remote add origin &lt;url&gt;   # 添加远程仓库
+git remote -v                 # 查看远程仓库地址
+git push -u origin main       # 推送本地分支到远程
+git pull origin main          # 拉取远程更新并合并
+git fetch origin              # 获取远程更新但不合并
+</code></pre>
+<h3>分支管理</h3>
+<h4>创建与切换</h4>
+<pre><code class="language-bash">git branch &lt;branch-name&gt;      # 创建分支
+git checkout &lt;branch-name&gt;    # 切换分支
+git switch &lt;branch-name&gt;      # 新命令切换分支
+git checkout -b &lt;branch-name&gt; # 创建并切换分支
+</code></pre>
+<h4>分支合并与删除</h4>
+<pre><code class="language-bash">git merge &lt;branch-name&gt;       # 将指定分支合并到当前分支
+git branch -d &lt;branch-name&gt;   # 删除本地分支
+git push origin --delete &lt;branch-name&gt;  # 删除远程分支
+</code></pre>
+<h4>查看分支</h4>
+<pre><code class="language-bash">git branch            # 查看本地分支
+git branch -r         # 查看远程分支
+git branch -a         # 查看所有分支
+</code></pre>
