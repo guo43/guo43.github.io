@@ -66,6 +66,7 @@ git add .          # 添加所有修改文件
 git commit -m "提交说明"  # 提交到本地仓库
 git diff           # 查看未暂存的修改
 git log            # 查看提交历史
+git rm -r --cache fileName/foldName #--cached 参数：从git索引中移除，但是保留本地文件
 ```
 
 #### 远程仓库操作
@@ -92,7 +93,7 @@ git checkout -b <branch-name> # 创建并切换分支
 #### 分支合并与删除
 
 ```bash
-git merge <branch-name>       # 将指定分支合并到当前分支
+git merge <branch-name>       # 将指定分支branch-name合并到当前分支
 git branch -d <branch-name>   # 删除本地分支
 git push origin --delete <branch-name>  # 删除远程分支
 ```
