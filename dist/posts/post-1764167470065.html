@@ -1,0 +1,77 @@
+<h2>xml</h2>
+<h2>Json</h2>
+<p>Json配置简单、读写更快速，方便策划人员配置</p>
+<h4>1.Excel转换Json</h4>
+<h4>2. JsonUtlity</h4>
+<ul>
+<li><p>序列化</p>
+<p>序列化不支持字典</p>
+<p>私有化字段（<strong>增加[serializefield]</strong>)</p>
+<p>自定义类，需要增加[<strong>serializable</strong>]</p>
+<p>字段没有赋值会初始化默认值</p>
+<pre><code class="language-cs">using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
+
+public class Person
+{
+    public string name;
+    public int age;
+    public bool sex;
+    public float testF;
+
+    public int[] ids;
+    public List&lt;int&gt; ids2;
+    public Dictionary&lt;int, int&gt; scores;
+    public Person friend;
+}
+
+
+public class JsonTest : MonoBehaviour
+{
+    void Start()
+    {
+        Person person = new Person();
+        person.name = &quot;张三&quot;;
+        person.age = 20;
+        person.sex = true;
+        person.testF = 99.9f;
+        person.ids = new int[] { 1, 2, 3, 4, 5 };
+        person.ids2 = new List&lt;int&gt;() { 11, 22, 33, 44, 55 };
+        person.scores = new Dictionary&lt;int, int&gt;();
+        person.scores.Add(1, 100);
+        person.scores.Add(2, 90);
+        person.scores.Add(3, 80);
+        person.friend = new Person();
+        person.friend.name = &quot;李四&quot;;
+        person.friend.age = 18;
+
+        string json = JsonUtility.ToJson(person);
+        Debug.Log(&quot;Serialized JSON: &quot; + json);
+
+        File.WriteAllText(Application.persistentDataPath + &quot;/person.json&quot;, json);
+    }
+}
+</code></pre>
+<pre><code class="language-json">{
+    &quot;name&quot;:&quot;三&quot;,
+    &quot;age&quot;:20,
+    &quot;sex&quot;:true,
+    &quot;testF&quot;:99.9000015258789,
+    &quot;ids&quot;:[1,2,3,4,5],
+    &quot;ids2&quot;:[11,22,33,44,55]
+}
+</code></pre>
+</li>
+<li><p>反序列化</p>
+<pre><code class="language-csharp">Person p = JsonUtility.FromJson&lt;Person&gt;(File.ReadAllText(Application.persistentDataPath + &quot;/person.json&quot;));
+</code></pre>
+</li>
+</ul>
+<h4>3. LitJson</h4>
+<p>定义：第三方库，用于处理Json的序列化与反序列化</p>
+<p>支持字典，键会转化为string</p>
+<p>支持数据集合</p>
+<h4>4. 对比</h4>
+<p>LitJson不需要加特性，支持字典，</p>
+<p>JsonUtility存储没有赋值的字段时会初始化默认值，LitJsonNull存储更准确</p>

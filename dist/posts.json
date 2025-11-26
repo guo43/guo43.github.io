@@ -3,10 +3,46 @@
     "id": "git-",
     "slug": "git",
     "title": "Git 使用指南",
-    "date": "2025-11-24",
+    "date": "2025-11-26",
     "excerpt": "Git 是一个分布式版本控制系统，用于管理代码和文档的版本。它可以帮助开发者高效协作、追踪历史记录、管理分支与合并代码。本文将详细介绍 Git 的使用方法、远程仓库操作、分支管理及其工作原理。 --- 1. Git 基础概念 2. Git 安装与配置 3. Git 常用命令 4. 远程仓库操作 5....",
     "filename": "Git 使用指南.md",
     "htmlPath": "posts/git.html"
+  },
+  {
+    "id": "ugui",
+    "slug": "ugui",
+    "title": "UGUI",
+    "date": "2025-11-25",
+    "excerpt": "IMGUI(GUI、通常用来制作内置编辑器) -> NGUI ->UGUI->UIElements(开发内置编辑器功能)",
+    "filename": "UGUI.md",
+    "htmlPath": "posts/ugui.html"
+  },
+  {
+    "id": "unity",
+    "slug": "unity",
+    "title": "Unity",
+    "date": "2025-11-25",
+    "excerpt": "：通过Resources.Load来读取 :只读 :可读可写，通过Application.persistentDataPath获取路径",
+    "filename": "Unity.md",
+    "htmlPath": "posts/unity.html"
+  },
+  {
+    "id": "-",
+    "slug": "post-1764167470065",
+    "title": "数据持久化",
+    "date": "2025-11-25",
+    "excerpt": "配置数据",
+    "filename": "数据持久化.md",
+    "htmlPath": "posts/post-1764167470065.html"
+  },
+  {
+    "id": "unity-",
+    "slug": "unity",
+    "title": "nity",
+    "date": "2025-11-24",
+    "excerpt": "Unity核心学习 2D相关、动画基础、2D动画、角色控制器、寻路",
+    "filename": "Unity 核心.md",
+    "htmlPath": "posts/unity.html"
   },
   {
     "id": "ngui",
@@ -28,20 +64,20 @@
   },
   {
     "id": "-",
-    "slug": "post-1763990837903",
+    "slug": "post-1764167470060",
     "title": "使用方式",
     "date": "2025-11-17",
     "excerpt": "md文件编写规则",
     "filename": "使用方式.md",
-    "htmlPath": "posts/post-1763990837903.html"
+    "htmlPath": "posts/post-1764167470060.html"
   },
   {
     "id": "-",
-    "slug": "post-1763990837904",
+    "slug": "post-1764167470063",
     "title": "吉他",
     "date": "2025-11-17",
     "excerpt": "大丈夫当朝碧海而暮苍梧",
     "filename": "吉他.md",
-    "htmlPath": "posts/post-1763990837904.html"
+    "htmlPath": "posts/post-1764167470063.html"
   }
 ]
