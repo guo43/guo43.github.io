@@ -1,0 +1,125 @@
+<h1>使用方式</h1>
+<h2>项目结构</h2>
+<pre><code>Blog/
+├── index.html          # 主页（文章列表）
+├── article.html        # 文章详情页
+├── css/
+│   └── style.css      # 样式文件
+├── js/
+│   ├── config.js      # GitHub 仓库配置
+│   ├── utils.js       # 工具函数（Front Matter 解析等）
+│   ├── main.js        # 主页逻辑（使用 GitHub API）
+│   └── article.js     # 文章页逻辑（使用 GitHub API）
+├── posts/             # Markdown 文章目录
+│   ├── post1.md
+│   └── post2.md
+└── README.md
+</code></pre>
+<h2>使用方法</h2>
+<h3>1. 配置 GitHub 仓库信息</h3>
+<p>编辑 <code>js/config.js</code> 文件，修改以下配置：</p>
+<pre><code class="language-javascript">const GITHUB_CONFIG = {
+    owner: &#39;yourusername&#39;,        // 您的 GitHub 用户名
+    repo: &#39;yourusername.github.io&#39;, // 仓库名称
+    branch: &#39;main&#39;,               // 分支名称（main 或 master）
+    postsPath: &#39;posts&#39;            // 文章目录路径
+};
+</code></pre>
+<h3>2. 添加新文章</h3>
+<p><strong>方式一：使用 Front Matter（推荐）</strong></p>
+<p>在 <code>posts/</code> 目录下创建 Markdown 文件，在文件开头添加元数据：</p>
+<pre><code class="language-markdown">---
+title: 使用方式
+date: 2024-01-03
+excerpt: 文章摘要（可选）
+---
+
+## 文章标题
+
+文章正文内容...
+</code></pre>
+<p><strong>方式二：使用文件名</strong></p>
+<p>如果不想使用 Front Matter，可以使用带日期的文件名格式：</p>
+<ul>
+<li><code>2024-01-03-文章标题.md</code></li>
+</ul>
+<p>系统会自动从文件名提取日期和标题。</p>
+<p><strong>注意</strong>：添加新文章后，只需推送到 GitHub，无需修改任何 JavaScript 代码！系统会自动从 GitHub API 获取文章列表。</p>
+<h3>3. 本地预览</h3>
+<p><strong>重要</strong>：由于使用 GitHub API，本地预览需要：</p>
+<ol>
+<li>确保 <code>js/config.js</code> 中的配置正确</li>
+<li>使用本地服务器（GitHub API 需要从服务器环境访问）：</li>
+</ol>
+<pre><code class="language-bash"># 使用 Python
+python -m http.server 8000
+
+# 或使用 Node.js
+npx http-server
+</code></pre>
+<p>然后在浏览器访问 <code>http://localhost:8000</code></p>
+<p><strong>注意</strong>：GitHub API 有速率限制（未认证 60次/小时）。如果频繁测试，建议：</p>
+<ul>
+<li>使用 GitHub Personal Access Token（可选，见下方说明）</li>
+<li>或者直接部署到 GitHub Pages 进行测试</li>
+</ul>
+<h3>4. 部署到 GitHub Pages</h3>
+<ol>
+<li>在 GitHub 创建仓库（命名为 <code>yourusername.github.io</code>）</li>
+<li>确保 <code>js/config.js</code> 中的配置与您的仓库信息一致</li>
+<li>将代码推送到仓库：<pre><code class="language-bash">git init
+git add .
+git commit -m &quot;Initial commit&quot;
+git remote add origin https://github.com/yourusername/yourusername.github.io.git
+git push -u origin main
+</code></pre>
+</li>
+<li>在仓库设置中启用 GitHub Pages（Settings → Pages → Source: main branch）</li>
+<li>等待几分钟后，访问 <code>https://yourusername.github.io</code> 查看博客</li>
+</ol>
+<h3>5. 可选：使用 GitHub Personal Access Token（提高 API 限制）</h3>
+<p>如果需要更高的 API 请求限制（5000次/小时），可以配置 Personal Access Token：</p>
+<ol>
+<li>在 GitHub 创建 Personal Access Token（Settings → Developer settings → Personal access tokens）</li>
+<li>在 <code>js/config.js</code> 中添加：<pre><code class="language-javascript">const GITHUB_CONFIG = {
+    // ... 其他配置
+    token: &#39;your_personal_access_token&#39; // 可选
+};
+</code></pre>
+</li>
+<li>修改 <code>js/config.js</code> 中的 API 请求函数，添加 Authorization header</li>
+</ol>
+<p><strong>注意</strong>：Token 是敏感信息，如果添加到代码中，请确保仓库是私有的，或者使用环境变量（需要构建工具）。</p>
+<h2>技术栈</h2>
+<ul>
+<li><strong>HTML5</strong>: 页面结构</li>
+<li><strong>CSS3</strong>: 样式设计</li>
+<li><strong>JavaScript (ES6+)</strong>: 交互逻辑</li>
+<li><strong>GitHub API</strong>: 自动获取文章列表和内容</li>
+<li><strong>Marked.js</strong>: Markdown 解析库（通过 CDN 引入）</li>
+</ul>
+<h2>样式特点</h2>
+<ul>
+<li>简洁的排版设计</li>
+<li>舒适的阅读体验</li>
+<li>响应式布局</li>
+<li>参考阮一峰博客的视觉风格</li>
+</ul>
+<h2>工作原理</h2>
+<ol>
+<li><strong>文章列表</strong>：使用 GitHub API 获取 <code>posts/</code> 目录下的所有 <code>.md</code> 文件</li>
+<li><strong>元数据提取</strong>：从 Front Matter 或文件名中提取标题、日期、摘要等信息</li>
+<li><strong>文章内容</strong>：通过 GitHub Raw 链接直接获取 Markdown 文件内容</li>
+<li><strong>Markdown 渲染</strong>：使用 Marked.js 将 Markdown 转换为 HTML 并显示</li>
+</ol>
+<h2>后续优化建议</h2>
+<ol>
+<li>✅ <del>使用 GitHub API 自动获取 Markdown 文件列表</del>（已完成）</li>
+<li>添加文章分类和标签功能</li>
+<li>实现搜索功能</li>
+<li>添加 RSS 订阅</li>
+<li>优化 SEO（meta 标签、sitemap）</li>
+<li>添加评论系统（如 Giscus）</li>
+<li>代码语法高亮（highlight.js）</li>
+<li>文章缓存机制（减少 API 请求）</li>
+</ol>
