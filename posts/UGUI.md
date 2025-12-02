@@ -56,4 +56,60 @@ UGUI是unity内置的UI开发工具
 
 - Toggle
 - Slider
-- 
+- ...
+
+## 4. 常用事件
+
+[链接]: https://docs.unity3d.com/cn/current/Manual/SupportedEvents.html
+
+对于组件中的默认事件只有点击等事件，只能设置调用函数
+
+Unity提供的多种事件用来处理输入模块和触摸输入时间，有两种实现方式：
+
+#### 1. 继承接口
+
+
+
+#### 2. EventTrigger
+
+- 拖拽
+
+​	在物体上添加EventTrigger组件，通过拖拽触发函数实现
+
+- 代码中实现
+
+​	在代码中添加`EventTrigger.Entry`添加监听函数实现
+
+```csharp
+// 事件触发器组件
+public EventTrigger et;
+
+void Start()
+{
+    EventTrigger.Entry entry1 = new EventTrigger.Entry();
+    EventTrigger.Entry entry2 = new EventTrigger.Entry();
+    entry1.eventID = EventTriggerType.BeginDrag;
+    entry2.eventID = EventTriggerType.EndDrag;
+    entry1.callback.AddListener((BaseEventData eventData) =>
+    {
+        PointerEventData ed = eventData as PointerEventData;
+    });
+	et.triggers.Add(entry1);
+}
+```
+
+
+
+## 5. RectTransformUtility工具类
+
+将屏幕坐标/世界坐标转换
+
+
+
+## 6. 自动布局
+
+- Horizontial Layout
+- Vertical Layout
+- Grid Layout
+- 内容自适应
+
