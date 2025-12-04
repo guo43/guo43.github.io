@@ -1,9 +1,86 @@
 <p>IMGUI(GUI、通常用来制作内置编辑器) -&gt; NGUI -&gt;UGUI-&gt;UIElements(开发内置编辑器功能)</p>
 <p>UGUI是unity内置的UI开发工具</p>
 <h2>1. 六大基础组件</h2>
-<p>Rect Transform：UI对象位置锚点控制组件</p>
-<p>Canvas：画布组件，用于渲染UI控件</p>
-<p>Canvas Scaler：画布分辨率自适应</p>
-<p>Graphic Raycaster：射线事件交互组件</p>
-<p>EventSystem：玩家输入事件响应系统</p>
-<p>Standalone Input Module：独立输入模块组件</p>
+<p><strong>Rect Transform</strong>：UI对象位置锚点控制组件</p>
+<ul>
+<li>Pivot：轴心点(0~1)，旋转、移动中心</li>
+<li>Anchors：</li>
+</ul>
+<p><strong>Canvas</strong>：画布组件，用于渲染UI控件</p>
+<ul>
+<li>游戏场景中的物体与UI界面分别使用摄像机渲染</li>
+<li>UI<code>camera</code>不使用天空盒，UI空白处透明</li>
+<li>想要在UI前面渲染物体时，可以把物体放在<code>Camera</code>组件的子物体下</li>
+</ul>
+<p><strong>Canvas Scaler</strong>：画布分辨率自适应</p>
+<ul>
+<li><p>UI原始尺寸：
+$$
+图片大小(像素) / pixels Per Unit / Reference Pixels Per Unit
+$$</p>
+</li>
+<li><p>图片大小与pixelsPerUnit大小成<code>反比</code></p>
+</li>
+<li><p>与ReferencePixelsPerUnit成<code>正比</code></p>
+</li>
+</ul>
+<p><strong>Graphic Raycaster</strong>：射线事件交互组件</p>
+<ul>
+<li><p>通过图形检测，而不是通过碰撞器检测射线</p>
+</li>
+<li><p>覆盖渲染模式无效</p>
+</li>
+</ul>
+<p><strong>EventSystem</strong>：玩家输入事件响应系统</p>
+<p><strong>Standalone Input Module</strong>：独立输入模块组件</p>
+<h2>2. 三大基础控件</h2>
+<ul>
+<li>Image</li>
+<li>Text</li>
+<li>Rawimage（显示大图）</li>
+</ul>
+<p><code>图集</code></p>
+<h2>3. 组合控件</h2>
+<ul>
+<li>Toggle</li>
+<li>Slider</li>
+<li>...</li>
+</ul>
+<h2>4. 常用事件</h2>
+<p>对于组件中的默认事件只有点击等事件，只能设置调用函数</p>
+<p>Unity提供的多种事件用来处理输入模块和触摸输入时间，有两种实现方式：</p>
+<h4>1. 继承接口</h4>
+<h4>2. EventTrigger</h4>
+<ul>
+<li>拖拽</li>
+</ul>
+<p>​	在物体上添加EventTrigger组件，通过拖拽触发函数实现</p>
+<ul>
+<li>代码中实现</li>
+</ul>
+<p>​	在代码中添加<code>EventTrigger.Entry</code>添加监听函数实现</p>
+<pre><code class="language-csharp">// 事件触发器组件
+public EventTrigger et;
+
+void Start()
+{
+    EventTrigger.Entry entry1 = new EventTrigger.Entry();
+    EventTrigger.Entry entry2 = new EventTrigger.Entry();
+    entry1.eventID = EventTriggerType.BeginDrag;
+    entry2.eventID = EventTriggerType.EndDrag;
+    entry1.callback.AddListener((BaseEventData eventData) =&gt;
+    {
+        PointerEventData ed = eventData as PointerEventData;
+    });
+    et.triggers.Add(entry1);
+}
+</code></pre>
+<h2>5. RectTransformUtility工具类</h2>
+<p>将屏幕坐标/世界坐标转换</p>
+<h2>6. 自动布局</h2>
+<ul>
+<li>Horizontial Layout</li>
+<li>Vertical Layout</li>
+<li>Grid Layout</li>
+<li>内容自适应</li>
+</ul>
