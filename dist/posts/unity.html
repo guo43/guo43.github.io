@@ -51,3 +51,6 @@ public class ThreadTest : MonoBehaviour {
 </ul>
 <p>协程本质是一个迭代器<code>IEnumrator</code></p>
 <p>使用IEnumrator.MoveNext()调用，可以通过yield return 分段</p>
+<h2>三、同步sync与异步async</h2>
+<p>异步是同时运行代码，用在Task中。但在异步函数中调用await是，会返回到调用函数，并开启一个线程。</p>
+<p>await会让出当前线程</p>

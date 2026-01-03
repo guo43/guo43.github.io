@@ -81,5 +81,9 @@ public class ThreadTest : MonoBehaviour {
 
 
 
+## 三、同步sync与异步async
 
+异步是同时运行代码，用在Task中。但在异步函数中调用await是，会返回到调用函数，并开启一个线程。
+
+await会让出当前线程
 
