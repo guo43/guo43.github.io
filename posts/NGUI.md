@@ -4,12 +4,11 @@ date: 2025-11-17
 excerpt: NGUI学习、实践小项目
 ---
 
-<<<<<<< HEAD
 ## 使用指南
 
 ​	在项目中，通过xml文件持久化存储数据，使用NGUI搭建UI界面
 
-![](..\Img\NGUIImg.png)
+![](..\Imgs\NGUIImg.png)
 
 > 数据封装成类对象
 
@@ -33,11 +32,6 @@ public abstract class BasePanel:MonoBehivor
 通过多个`camera`分别渲染不同层级的对象
 
 ## 使用问题
-=======
-------
-
-**界面2D/3D的切换**
->>>>>>> blog/master
 
 ​	NGUI的界面有两种事件类型为`2D UI`和`3D UI`，转换UI类型时，需要改变`Event type`，同时要改变按钮的碰撞器类型(2d/3d)，否则界面显示出现问题。
 
