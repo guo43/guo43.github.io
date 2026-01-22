@@ -1,3 +1,9 @@
+---
+title: c#面经
+date: 2026-01-22
+experct: 
+---
+
 **readonly const关键字**
 
 ```

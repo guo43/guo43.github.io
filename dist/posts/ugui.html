@@ -32,55 +32,80 @@ $$</p>
 </li>
 </ul>
 <p><strong>EventSystem</strong>：玩家输入事件响应系统</p>
-<p><strong>Standalone Input Module</strong>：独立输入模块组件</p>
-<h2>2. 三大基础控件</h2>
+<p>Standalone Input Module：独立输入模块组件</p>
+<h2>2.图集</h2>
+<ol>
+<li>安装<code>2D Sprite</code>包</li>
+<li>在Project setting\Editor中， 设置Sprite Packer</li>
+</ol>
+<p>注意：</p>
 <ul>
-<li>Image</li>
-<li>Text</li>
-<li>Rawimage（显示大图）</li>
+<li>打包UI图集时，不要勾选allow Rotation，Tight Packing</li>
 </ul>
-<p><code>图集</code></p>
-<h2>3. 组合控件</h2>
+<h2>3.事件监听</h2>
+<p>[常用事件]: <a href="https://docs.unity.cn/cn/2020.3/Manual/SupportedEvents.html">https://docs.unity.cn/cn/2020.3/Manual/SupportedEvents.html</a>	&quot;&quot;常用事件&quot;&quot;</p>
+<h4>第一种方式 (继承实现接口方法)</h4>
+<h4>第二种方式（添加EventTrigger组件）</h4>
+<p>EventTrigger是接口方法的一个整合类，可以通过拖拽的方式添加事件方法，也可以通过代码动态添加事件。</p>
+<pre><code class="language-cs">EventTrigger et;
+trigger = new EventTrigger.Entry();
+trigger.eventID = EventTriggerType.Drag;
+trigger.callback.AddListener(moveGO);
+et.triggers.Add(trigger);
+</code></pre>
+<p>注意：</p>
 <ul>
-<li>Toggle</li>
-<li>Slider</li>
-<li>...</li>
+<li><strong>Drag事件</strong>只在鼠标/手指<strong>移动时</strong>触发</li>
+<li>当鼠标/手指<strong>静止不动</strong>时，Drag事件<strong>不再被调用</strong></li>
 </ul>
-<h2>4. 常用事件</h2>
-<p>对于组件中的默认事件只有点击等事件，只能设置调用函数</p>
-<p>Unity提供的多种事件用来处理输入模块和触摸输入时间，有两种实现方式：</p>
-<h4>1. 继承接口</h4>
-<h4>2. EventTrigger</h4>
+<h2>3. RectTransformUtility</h2>
 <ul>
-<li>拖拽</li>
+<li>屏幕坐标/世界坐标的转换</li>
 </ul>
-<p>​	在物体上添加EventTrigger组件，通过拖拽触发函数实现</p>
-<ul>
-<li>代码中实现</li>
-</ul>
-<p>​	在代码中添加<code>EventTrigger.Entry</code>添加监听函数实现</p>
-<pre><code class="language-csharp">// 事件触发器组件
-public EventTrigger et;
-
-void Start()
+<p>跟随物体移动</p>
+<pre><code class="language-cs">public class Wheel : MonoBehaviour
 {
-    EventTrigger.Entry entry1 = new EventTrigger.Entry();
-    EventTrigger.Entry entry2 = new EventTrigger.Entry();
-    entry1.eventID = EventTriggerType.BeginDrag;
-    entry2.eventID = EventTriggerType.EndDrag;
-    entry1.callback.AddListener((BaseEventData eventData) =&gt;
+    public RectTransform rectTransform;
+    private RectTransform rt;
+    public GameObject target;
+    public EventTrigger et;
+    public Vector3 direction;
+    public bool isDrag;
+
+    private void Start()
     {
-        PointerEventData ed = eventData as PointerEventData;
-    });
-    et.triggers.Add(entry1);
+        rt = GetComponent&lt;RectTransform&gt;();
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.Drag;
+        entry.callback.AddListener(movePos);
+        et.triggers.Add(entry);
+
+        rt.anchoredPosition = Vector2.zero;
+    }
+
+    private void Update()
+    {
+        if (isDrag)
+        {
+            target.transform.rotation = Quaternion.LookRotation(direction);
+            target.transform.Translate(target.transform.forward * 50 * Time.deltaTime, Space.World);
+        }
+    }
+
+    private void movePos(BaseEventData eventData)
+    {
+        isDrag = true;
+        Vector2 currentPos = Vector2.zero;
+        PointerEventData data = eventData as PointerEventData;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, data.position, data.enterEventCamera, out currentPos);
+
+        rt.anchoredPosition += data.delta;
+        if (rt.anchoredPosition.magnitude &gt; 100)
+        {
+            rt.anchoredPosition = rt.anchoredPosition.normalized * 100;
+        }
+        Debug.Log(rt.anchoredPosition);
+        direction = new Vector3(currentPos.normalized.x, 0, currentPos.normalized.y);
+    }
 }
 </code></pre>
-<h2>5. RectTransformUtility工具类</h2>
-<p>将屏幕坐标/世界坐标转换</p>
-<h2>6. 自动布局</h2>
-<ul>
-<li>Horizontial Layout</li>
-<li>Vertical Layout</li>
-<li>Grid Layout</li>
-<li>内容自适应</li>
-</ul>

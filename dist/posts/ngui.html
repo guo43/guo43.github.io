@@ -1,4 +1,25 @@
-<hr>
-<p><strong>界面2D/3D的切换</strong></p>
+<h2>使用指南</h2>
+<p>​	在项目中，通过xml文件持久化存储数据，使用NGUI搭建UI界面</p>
+<p><img src="..%5CImgs%5CNGUIImg.png" alt=""></p>
+<blockquote>
+<p>数据封装成类对象</p>
+</blockquote>
+<p>面板中的数据通过<code>UIDataMgr</code>单例对象进行管理，访问<code>UIDataMgr</code>实例对象读取、修改数据。在<code>UIDataMgr</code>中通过<code>XmlDataMgr</code>访问并修改硬盘中的数据。</p>
+<pre><code class="language-cs">public abstract class BasePanel:MonoBehivor
+{
+    protected void Start()
+    {
+        InitPanel();
+    }
+    
+    // 在父类中声明InitPanel()函数，并在Start中调用，则基类中只需要实现InitPanel，无需重写Start生命函数。
+    protected abstract void InitPanel();
+}
+</code></pre>
+<blockquote>
+<p>UI和场景对象分别渲染</p>
+</blockquote>
+<p>通过多个<code>camera</code>分别渲染不同层级的对象</p>
+<h2>使用问题</h2>
 <p>​	NGUI的界面有两种事件类型为<code>2D UI</code>和<code>3D UI</code>，转换UI类型时，需要改变<code>Event type</code>，同时要改变按钮的碰撞器类型(2d/3d)，否则界面显示出现问题。</p>
 <hr>

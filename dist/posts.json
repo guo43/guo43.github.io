@@ -1,9 +1,18 @@
 [
   {
+    "id": "c-",
+    "slug": "c",
+    "title": "c#面经",
+    "date": "2026-01-22",
+    "excerpt": "**readonly const关键字** **sealed 关键字** 用于修饰重写基类的虚方法上，阻止派生类重写该方法。 **in ref out关键字** **同步和异步**",
+    "filename": "C#面经.md",
+    "htmlPath": "posts/c.html"
+  },
+  {
     "id": "git-",
     "slug": "git",
     "title": "Git 使用指南",
-    "date": "2026-01-03",
+    "date": "2026-01-22",
     "excerpt": "Git 是一个分布式版本控制系统，用于管理代码和文档的版本。它可以帮助开发者高效协作、追踪历史记录、管理分支与合并代码。本文将详细介绍 Git 的使用方法、远程仓库操作、分支管理及其工作原理。 --- 1. Git 基础概念 2. Git 安装与配置 3. Git 常用命令 4. 远程仓库操作 5....",
     "filename": "Git 使用指南.md",
     "htmlPath": "posts/git.html"
@@ -11,11 +20,29 @@
   {
     "id": "net-",
     "slug": "net",
-    "title": "net原理",
-    "date": "2026-01-03",
+    "title": ".net原理",
+    "date": "2026-01-22",
     "excerpt": "​ .Net就是使用一套跨语言规则，将不同的语言转换成一个中间语言代码，从而使用公共语言运行库（CLR虚拟机）转换成平台的机器码。 .Net Mono（跨语言、跨平台） ​ 在Core没有出现之前，需要跨平台开发时需要使用Mono，是一个第三方的项目 .Net Core（跨语言、跨平台） - Uni...",
     "filename": "net原理.md",
     "htmlPath": "posts/net.html"
+  },
+  {
+    "id": "c-",
+    "slug": "c",
+    "title": "C#源代码",
+    "date": "2025-12-27",
+    "excerpt": "组成： - 对象头 - 类型信息： 所属模块、名称、字段列表、属性列表、方法列表、方法入口地址 - 字段内容 再C++中，指针转换类型后不会触发异常，但是再.NET中，对象（托管对象）中存储了类型信息，转换类型会触发异常。 **目标：** - 知道 .NET 内存和 C/C++ 有什么本质不同 - ...",
+    "filename": "C#.md",
+    "htmlPath": "posts/c.html"
+  },
+  {
+    "id": "unity-",
+    "slug": "unity",
+    "title": "Unity游戏小框架",
+    "date": "2025-12-20",
+    "excerpt": "游戏基本框架，减少代码重复量，实现了单例模式，缓存池、公共Mono、资源加载模块等",
+    "filename": "Unity小框架.md",
+    "htmlPath": "posts/unity.html"
   },
   {
     "id": "unity",
@@ -28,12 +55,12 @@
   },
   {
     "id": "-",
-    "slug": "post-1767441038717",
+    "slug": "post-1769055282680",
     "title": "c#源代码",
     "date": "2025-12-18",
     "excerpt": "通过双指针循环队列实现 - 默认长度为32 - 扩容2倍 - 队列满了，会扩容，调用SetCapacity函数，创建一个新数组，调用Array拷贝函数复制_array中的值。同时将新数组赋值给_array。 - 不是线程安全的 是线程安全的，是一个 - 使用一个链表实现 - 在操作数据的函数中加锁 ...",
     "filename": "源码.md",
-    "htmlPath": "posts/post-1767441038717.html"
+    "htmlPath": "posts/post-1769055282680.html"
   },
   {
     "id": "gpu",
@@ -46,12 +73,21 @@
   },
   {
     "id": "-",
-    "slug": "post-1767441038713",
+    "slug": "post-1769055282677",
     "title": "操作系统OS",
     "date": "2025-12-11",
     "excerpt": "虚拟化内存 并发 持久化 ​ 在进程中可以通过创建子进程，实现并发操作。 ​ 进程之间使用独立的地址空间，共享数据需要通过IPC或发送消息的方式实现。 **IPC通信方式** - 管道pipe 队列 - 信号 signal - 消息队列 链表 - 信号量 用于同步，类似于锁，用来解决共享数据时竞争状...",
     "filename": "操作系统.md",
-    "htmlPath": "posts/post-1767441038713.html"
+    "htmlPath": "posts/post-1769055282677.html"
+  },
+  {
+    "id": "ai-",
+    "slug": "ai",
+    "title": "游戏AI系统",
+    "date": "2025-12-05",
+    "excerpt": "- Event Definition - Callback Registration ( )激活处理方法 - Dispatch 编译型语言，修改后需要整个游戏重新编译一次 解释性语言，可以按照修改后代码运行，不需要编译，运行在sandbox中，但是速度慢 通过编译转换成二进制语言，通过虚拟机运行 -...",
+    "filename": "AI系统.md",
+    "htmlPath": "posts/ai.html"
   },
   {
     "id": "gesture",
@@ -61,6 +97,15 @@
     "excerpt": "- [ ] 10 min 热身：Gesture 10 张（30 秒） - [ ] 20 min 学习：观看教学（结构 / 骨骼 / 肌肉） - [ ] 30 min 今日主题练习（按周安排） - [ ] 20 min 完整姿势一张（10–15 分钟） - [ ] 10 min 自我纠错（透明层校对骨...",
     "filename": "Gesture.md",
     "htmlPath": "posts/gesture.html"
+  },
+  {
+    "id": "-",
+    "slug": "post-1769055282681",
+    "title": "绘画",
+    "date": "2025-11-29",
+    "excerpt": "[drawbox]: https://drawabox.com/ \"drawbox\"",
+    "filename": "绘画.md",
+    "htmlPath": "posts/post-1769055282681.html"
   },
   {
     "id": "ugui",
@@ -73,12 +118,12 @@
   },
   {
     "id": "-",
-    "slug": "post-1767441038714",
+    "slug": "post-1769055282678",
     "title": "数据持久化",
     "date": "2025-11-25",
     "excerpt": "配置数据",
     "filename": "数据持久化.md",
-    "htmlPath": "posts/post-1767441038714.html"
+    "htmlPath": "posts/post-1769055282678.html"
   },
   {
     "id": "unity-",
@@ -99,30 +144,21 @@
     "htmlPath": "posts/ngui.html"
   },
   {
-    "id": "test-effects",
-    "slug": "test-effects",
-    "title": "特效指南",
-    "date": "2025-11-17",
-    "excerpt": "页面淡入淡出、文章卡片悬停、滚动淡入、代码复制",
-    "filename": "TEST_EFFECTS.md",
-    "htmlPath": "posts/test-effects.html"
-  },
-  {
     "id": "-",
-    "slug": "post-1767441038709",
+    "slug": "post-1769055282672",
     "title": "使用方式",
     "date": "2025-11-17",
     "excerpt": "md文件编写规则",
     "filename": "使用方式.md",
-    "htmlPath": "posts/post-1767441038709.html"
+    "htmlPath": "posts/post-1769055282672.html"
   },
   {
     "id": "-",
-    "slug": "post-1767441038711",
+    "slug": "post-1769055282675",
     "title": "吉他",
     "date": "2025-11-17",
     "excerpt": "大丈夫当朝碧海而暮苍梧",
     "filename": "吉他.md",
-    "htmlPath": "posts/post-1767441038711.html"
+    "htmlPath": "posts/post-1769055282675.html"
   }
 ]

@@ -90,3 +90,8 @@ private volatile Segment _tail;    // 队列尾段（用于入队）
 </ul>
 </li>
 </ol>
+<h2>三、Stack</h2>
+<p>数组实现</p>
+<p>默认是两倍扩容</p>
+<pre><code class="language-csharp">int newcapacity = _array.Length == 0 ? DefaultCapacity : 2 * _array.Length;
+</code></pre>
