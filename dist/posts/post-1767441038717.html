@@ -1,0 +1,92 @@
+<h2>一、Queue</h2>
+<p><code>Queue</code>通过双指针循环队列实现</p>
+<ul>
+<li>默认长度为32</li>
+<li>扩容2倍</li>
+<li>队列满了，会扩容，调用SetCapacity函数，创建一个新数组，调用Array拷贝函数复制_array中的值。同时将新数组赋值给_array。</li>
+<li>不是线程安全的</li>
+</ul>
+<p><code>ConcurrentQueue</code> 是线程安全的，是一个<code>Queue wrapper</code></p>
+<ul>
+<li><p>使用一个链表实现</p>
+<pre><code class="language-cs">// 简化版内部结构
+private class Segment
+{
+    internal readonly T[] _array;           // 存储元素的数组
+    internal volatile Segment _next;        // 下一个段
+    private volatile int _state;            // 段的状态标志
+    private int _head;                      // 段内出队位置
+    private int _tail;                      // 段内入队位置
+    private int _freezeOffset;              // 冻结偏移量
+}
+
+private volatile Segment _head;    // 队列头段（用于出队）
+private volatile Segment _tail;    // 队列尾段（用于入队）
+</code></pre>
+</li>
+<li><p>在操作数据的函数中加锁</p>
+</li>
+<li><p>默认也是两倍扩容</p>
+</li>
+</ul>
+<pre><code class="language-csharp">public class Queue : ICollection, ICloneable
+{
+    private object?[] _array; // 
+    private int _head; // 头指针
+    private int _tail; // 尾指针
+    private int _size; // Number of elements.
+    private readonly int _growFactor; // 100 == 1.0, 
+    private const int MinimumGrow = 4;
+    
+    public Queue(): this(32, (float)2.0){} // 默认数组长度为32
+    
+    public virtual int Count {get {return _size;}}
+    public Queue(int capacity)
+    {
+        _array = new object[capacity];
+        _head = 0;
+        _tile = 0;
+        _size = 0;
+    }
+    
+    public virtual void Enqueue(object? obj)
+    {
+        // 满了
+        if (_size == _array.Length) 
+        {
+            int newcapacity = (int)((long)_array.Length *(long)_growFactor);
+            SetCapacity();
+        }
+        
+        _array[_tail] = obj;
+        _tail = (_tail+1)%_array.Length;
+        _size++;
+    }
+    
+    public virtual object? Dequeue()
+    {
+        if (Count==0) // 抛出异常
+        object? removed = _array[_head];
+        _array[_head] = null;
+        _head = (_head + 1)%_array.Length;
+        _size--;
+    }
+}
+</code></pre>
+<h2>二、String</h2>
+<p><code>string</code>是一个不可变的字符串，使用+号回产生新对象，并且占用内存。</p>
+<p><code>string</code>类型变量是在堆上分配内存的。</p>
+<ol>
+<li>两字符串比较<ul>
+<li>首先比较引用，内部对string进行<code>装箱</code>成object，比较两个对象的引用地址是否相同</li>
+<li>然后...</li>
+</ul>
+</li>
+<li>两个字符拼接<ul>
+<li>会转换成Concat</li>
+<li>如果其中一个为Null，则返回另一个</li>
+<li>否则，计算两个字符总长度，分配内存</li>
+<li>然后将两个字符串拷贝到新分配的string中</li>
+</ul>
+</li>
+</ol>

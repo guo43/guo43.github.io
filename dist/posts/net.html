@@ -1,0 +1,25 @@
+<h2>.Net Framework（跨语言）</h2>
+<p>​	.Net就是使用一套跨语言规则，将不同的语言转换成一个中间语言代码，从而使用公共语言运行库（CLR虚拟机）转换成平台的机器码。</p>
+<p>.Net Mono（跨语言、跨平台）</p>
+<p>​	在Core没有出现之前，需要跨平台开发时需要使用Mono，是一个第三方的项目</p>
+<p>.Net Core（跨语言、跨平台）</p>
+<h2>Unity和Mono</h2>
+<ul>
+<li>UnityEngine引擎</li>
+<li>UnityEditor</li>
+</ul>
+<p>Unity使用Mono实现跨平台，c#代码通过Mono c#编译器，编译成中间代码，然后通过CLR虚拟机转变为操作系统原生代码。</p>
+<p>Unity底层使用C/C++开发，为了让开发者更容易使用c#编写脚本</p>
+<p>但支持的平台越多，维护工作耗时耗力，工作量增大。</p>
+<h2>IL2CPP</h2>
+<p>IL中间代码转译为CPP代码，不需要虚拟机，而是通过IL2CPP转化成C++代码。相对Mono构建速度慢。</p>
+<p>由于IL2CPP会转换成c++代码。因此，编译时确定需要用到的类型，不能动态时生成代码和类型。是AOT提前编译</p>
+<p>JIT即时编译和AOT提前编译</p>
+<p>边编译边执行：（IL）中间代码直接在VM中执行（中间代码是使用编程语言编译成CLR可执行的中间代码），CLR（Common Langugle Runtime）公共语言运行时会一边编译IL为原生代码一边执行。</p>
+<p>AOT提前编译：中间代码通过IL2CPP编译后生成C++代码，然后通过C++编译器编译成原生汇编代码后才通过IL2CPP VM运行</p>
+<p><img src="D:%5Cblog%5CImgs%5CIL2CPP.png" alt="image-20251222171145467"></p>
+<h2>程序集</h2>
+<ul>
+<li>元数据(引用表和模块中的类型表)</li>
+<li>IL</li>
+</ul>

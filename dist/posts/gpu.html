@@ -1,0 +1,23 @@
+<h2>GPU</h2>
+<ol>
+<li><code>GPU</code>和<code>CPU</code>的区别</li>
+</ol>
+<ul>
+<li>计算能力不同，<code>cpu</code>的执行能力强于<code>GPU</code>。cpu适合于做复杂控制逻辑，优化串行程序。<code>GPU</code>只能执行一些简单的计算，处理并行任务。计算灵活性没有中央处理器高。</li>
+<li>多核；<code>GPU</code>拥有多个处理器，可以并行执行，用来处理数据并行。<code>CPU</code>指令任务并发</li>
+</ul>
+<ol start="2">
+<li><p>并行类型</p>
+<ul>
+<li><strong>任务并行</strong>：数据并行处理可以将数据映射给并行线程</li>
+<li><strong>数据并行：</strong></li>
+</ul>
+</li>
+<li><p>CPU + GPU 异构并行</p>
+</li>
+</ol>
+<p>​	同时使用CPU和GPU执行应用程序，在CPU上执行串行或任务并行部分，在GPU上执行数据密集型并行部分。因此提出<code>CUDA</code>编程模型</p>
+<p><img src="D:/blog/Imgs/GPU%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B.png" alt=""></p>
+<p>全局类似于CPU的系统内存，而共享内存类似于CPU的缓存</p>
+<h2>渲染管线</h2>
+<p>概念：将应用程序的数据转换到最终渲染的图像。将用户提供的几何定点数据，输入到着色器阶段进行处理，最终光栅化处理</p>

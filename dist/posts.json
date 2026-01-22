@@ -3,10 +3,64 @@
     "id": "git-",
     "slug": "git",
     "title": "Git 使用指南",
-    "date": "2025-11-26",
+    "date": "2026-01-03",
     "excerpt": "Git 是一个分布式版本控制系统，用于管理代码和文档的版本。它可以帮助开发者高效协作、追踪历史记录、管理分支与合并代码。本文将详细介绍 Git 的使用方法、远程仓库操作、分支管理及其工作原理。 --- 1. Git 基础概念 2. Git 安装与配置 3. Git 常用命令 4. 远程仓库操作 5....",
     "filename": "Git 使用指南.md",
     "htmlPath": "posts/git.html"
+  },
+  {
+    "id": "net-",
+    "slug": "net",
+    "title": "net原理",
+    "date": "2026-01-03",
+    "excerpt": "​ .Net就是使用一套跨语言规则，将不同的语言转换成一个中间语言代码，从而使用公共语言运行库（CLR虚拟机）转换成平台的机器码。 .Net Mono（跨语言、跨平台） ​ 在Core没有出现之前，需要跨平台开发时需要使用Mono，是一个第三方的项目 .Net Core（跨语言、跨平台） - Uni...",
+    "filename": "net原理.md",
+    "htmlPath": "posts/net.html"
+  },
+  {
+    "id": "unity",
+    "slug": "unity",
+    "title": "Unity",
+    "date": "2025-12-18",
+    "excerpt": "：通过Resources.Load来读取 :只读 :可读可写，通过Application.persistentDataPath获取路径 是“假”的多线程，不是线程。 unity 支持多线程，但是新开线程无法访问Unity相关对象的内容，无法访问。 作为线程可以用来运行复杂算法，将结果放在或者之中。 ...",
+    "filename": "Unity.md",
+    "htmlPath": "posts/unity.html"
+  },
+  {
+    "id": "-",
+    "slug": "post-1767441038717",
+    "title": "c#源代码",
+    "date": "2025-12-18",
+    "excerpt": "通过双指针循环队列实现 - 默认长度为32 - 扩容2倍 - 队列满了，会扩容，调用SetCapacity函数，创建一个新数组，调用Array拷贝函数复制_array中的值。同时将新数组赋值给_array。 - 不是线程安全的 是线程安全的，是一个 - 使用一个链表实现 - 在操作数据的函数中加锁 ...",
+    "filename": "源码.md",
+    "htmlPath": "posts/post-1767441038717.html"
+  },
+  {
+    "id": "gpu",
+    "slug": "gpu",
+    "title": "GPU架构与渲染管线",
+    "date": "2025-12-12",
+    "excerpt": "1. 和的区别 - 计算能力不同，的执行能力强于。cpu适合于做复杂控制逻辑，优化串行程序。只能执行一些简单的计算，处理并行任务。计算灵活性没有中央处理器高。 - 多核；拥有多个处理器，可以并行执行，用来处理数据并行。指令任务并发 2. 并行类型 - **任务并行**：数据并行处理可以将数据映射给并...",
+    "filename": "GPU.md",
+    "htmlPath": "posts/gpu.html"
+  },
+  {
+    "id": "-",
+    "slug": "post-1767441038713",
+    "title": "操作系统OS",
+    "date": "2025-12-11",
+    "excerpt": "虚拟化内存 并发 持久化 ​ 在进程中可以通过创建子进程，实现并发操作。 ​ 进程之间使用独立的地址空间，共享数据需要通过IPC或发送消息的方式实现。 **IPC通信方式** - 管道pipe 队列 - 信号 signal - 消息队列 链表 - 信号量 用于同步，类似于锁，用来解决共享数据时竞争状...",
+    "filename": "操作系统.md",
+    "htmlPath": "posts/post-1767441038713.html"
+  },
+  {
+    "id": "gesture",
+    "slug": "gesture",
+    "title": "Gesture",
+    "date": "2025-12-01",
+    "excerpt": "- [ ] 10 min 热身：Gesture 10 张（30 秒） - [ ] 20 min 学习：观看教学（结构 / 骨骼 / 肌肉） - [ ] 30 min 今日主题练习（按周安排） - [ ] 20 min 完整姿势一张（10–15 分钟） - [ ] 10 min 自我纠错（透明层校对骨...",
+    "filename": "Gesture.md",
+    "htmlPath": "posts/gesture.html"
   },
   {
     "id": "ugui",
@@ -18,22 +72,13 @@
     "htmlPath": "posts/ugui.html"
   },
   {
-    "id": "unity",
-    "slug": "unity",
-    "title": "Unity",
-    "date": "2025-11-25",
-    "excerpt": "：通过Resources.Load来读取 :只读 :可读可写，通过Application.persistentDataPath获取路径",
-    "filename": "Unity.md",
-    "htmlPath": "posts/unity.html"
-  },
-  {
     "id": "-",
-    "slug": "post-1764167470065",
+    "slug": "post-1767441038714",
     "title": "数据持久化",
     "date": "2025-11-25",
     "excerpt": "配置数据",
     "filename": "数据持久化.md",
-    "htmlPath": "posts/post-1764167470065.html"
+    "htmlPath": "posts/post-1767441038714.html"
   },
   {
     "id": "unity-",
@@ -64,20 +109,20 @@
   },
   {
     "id": "-",
-    "slug": "post-1764167470060",
+    "slug": "post-1767441038709",
     "title": "使用方式",
     "date": "2025-11-17",
     "excerpt": "md文件编写规则",
     "filename": "使用方式.md",
-    "htmlPath": "posts/post-1764167470060.html"
+    "htmlPath": "posts/post-1767441038709.html"
   },
   {
     "id": "-",
-    "slug": "post-1764167470063",
+    "slug": "post-1767441038711",
     "title": "吉他",
     "date": "2025-11-17",
     "excerpt": "大丈夫当朝碧海而暮苍梧",
     "filename": "吉他.md",
-    "htmlPath": "posts/post-1764167470063.html"
+    "htmlPath": "posts/post-1767441038711.html"
   }
 ]
